@@ -20,7 +20,7 @@
     </p:declare-step>
   </x:script>
   
-  <x:scenario label="test_1">
+  <x:scenario label="Grade 1 and 2">
     <x:call step="pxi:transform">
       <x:input port="source">
         <x:document type="inline">
@@ -62,6 +62,61 @@
         </x:document>
       </x:expect>
     </x:scenario>
+  </x:scenario>
+  
+  <x:scenario label="Text-level semantics">
+    <x:call step="pxi:transform">
+      <x:input port="source">
+        <x:document type="inline">
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <p>
+              <em>Sid ned!</em> råbte han.
+            </p>
+            <p>
+              På skiltet stod <strong>STOP</strong> med store bogstaver.
+            </p>
+            <p>
+              <abbr>NATO</abbr> har besluttet at gå imod <abbr>FN</abbr>'s
+              beslutning. <abbr>NATO</abbr>s styrker indsættes i april.
+            </p>
+            <p>
+              Kejser Wilhelm <span class="roman">II</span> kender vi, men hvem var Wilhelm <span
+              class="roman">I</span>?
+            </p>
+            <p>
+              Læs afsnit A nr. <span class="roman">iv</span>.
+            </p>
+          </div>
+        </x:document>
+      </x:input>
+      <x:option name="grade" select="'1'"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="port" port="result"/>
+    </x:context>
+    <x:expect label="result" type="compare" pending="not implemented yet">
+      <x:document type="inline">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <p>
+            <em>⠰⠎⠊⠙ ⠝⠑⠙⠖⠰</em> ⠗⠡⠃⠞⠑ ⠓⠁⠝⠄
+          </p>
+          <p>
+            ⠏⠡ ⠎⠅⠊⠇⠞⠑⠞ ⠎⠞⠕⠙ <strong>⠰⠎⠞⠕⠏⠰</strong> ⠍⠑⠙ ⠎⠞⠕⠗⠑ ⠃⠕⠛⠎⠞⠁⠧⠑⠗⠄
+          </p>
+          <p>
+            <abbr>⠸⠝⠁⠞⠕</abbr> ⠓⠁⠗ ⠃⠑⠎⠇⠥⠞⠞⠑⠞ ⠁⠞ ⠛⠡ ⠊⠍⠕⠙ <abbr>⠸⠋⠝</abbr>⠈⠎ ⠃⠑⠎⠇⠥⠞⠝⠊⠝⠛⠄
+            <abbr>⠸⠝⠁⠞⠕</abbr>⠠⠎ ⠎⠞⠽⠗⠅⠑⠗ ⠊⠝⠙⠎⠜⠞⠞⠑⠎ ⠊ ⠁⠏⠗⠊⠇⠄
+          </p>
+          <p>
+            ⠅⠑⠚⠎⠑⠗ ⠺⠊⠇⠓⠑⠇⠍ <span class="roman">⠸⠊⠊</span> ⠅⠑⠝⠙⠑⠗ ⠧⠊⠂ ⠍⠑⠝ ⠓⠧⠑⠍ ⠧⠁⠗ ⠺⠊⠇⠓⠑⠇⠍ <span
+            class="roman">⠨⠊</span>⠢
+          </p>
+          <p>
+            ⠇⠜⠎ ⠁⠋⠎⠝⠊⠞ ⠨⠁ ⠝⠗⠄ <span class="roman">⠠⠊⠧</span>⠄
+          </p>
+        </div>
+      </x:document>
+    </x:expect>
   </x:scenario>
   
 </x:description>
