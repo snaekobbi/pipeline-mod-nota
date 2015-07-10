@@ -1,0 +1,8 @@
+pipeline-mod-nota v1.0.0
+========================
+
+Includes
+--------
+- Custom Liblouis based translator that handles `html:strong` and `html:em`
+  (https://github.com/snaekobbi/liblouis/issues/2, https://github.com/snaekobbi/issues/issues/13,
+  https://github.com/snaekobbi/issues/issues/14, https://github.com/snaekobbi/pipeline-mod-braille/issues/40)
