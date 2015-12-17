@@ -2,7 +2,7 @@
 <xsl:stylesheet version="2.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:louis="http://liblouis.org/liblouis"
+                xmlns:pf="http://www.daisy.org/ns/pipeline/functions"
                 xmlns:css="http://www.daisy.org/ns/pipeline/braille-css"
                 xmlns:html="http://www.w3.org/1999/xhtml"
                 exclude-result-prefixes="#all">
@@ -11,7 +11,7 @@
 	
 	<xsl:param name="query" required="yes"/>
 	
-	<xsl:template match="css:block" mode="#all">
+	<xsl:template match="css:block" mode="#default before after">
 		<xsl:variable name="text" as="text()*" select="//text()"/>
 		<xsl:variable name="style" as="xs:string*">
 			<xsl:for-each select="$text">
@@ -26,11 +26,11 @@
 			</xsl:for-each>
 		</xsl:variable>
 		<xsl:apply-templates select="node()[1]" mode="treewalk">
-			<xsl:with-param name="new-text-nodes" select="louis:translate($query,$text,$style)"/>
+			<xsl:with-param name="new-text-nodes" select="pf:text-transform($query,$text,$style)"/>
 		</xsl:apply-templates>
 	</xsl:template>
 	
-	<xsl:template match="css:property[@name=('text-transform','font-style','font-weight','text-decoration','color')]"
+	<xsl:template match="css:property[@name=('font-style','font-weight','text-decoration','color')]"
 	              mode="translate-declaration-list"/>
 	
 	<xsl:template match="css:property[@name='hyphens' and @value='auto']" mode="translate-declaration-list">
