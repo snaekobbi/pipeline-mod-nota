@@ -2,7 +2,7 @@
 <xsl:stylesheet version="2.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:louis="http://liblouis.org/liblouis"
+                xmlns:pf="http://www.daisy.org/ns/pipeline/functions"
                 xmlns:css="http://www.daisy.org/ns/pipeline/braille-css"
                 xmlns:html="http://www.w3.org/1999/xhtml"
                 exclude-result-prefixes="#all">
@@ -26,7 +26,7 @@
 			</xsl:for-each>
 		</xsl:variable>
 		<xsl:apply-templates select="node()[1]" mode="treewalk">
-			<xsl:with-param name="new-text-nodes" select="louis:translate($query,$text,$style)"/>
+			<xsl:with-param name="new-text-nodes" select="pf:text-transform($query,$text,$style)"/>
 		</xsl:apply-templates>
 	</xsl:template>
 	
