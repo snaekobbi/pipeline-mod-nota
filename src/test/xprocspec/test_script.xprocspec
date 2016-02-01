@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.daisy.org/ns/xprocspec"
+               xmlns:px="http://www.daisy.org/ns/pipeline/xproc"
+               script="http://www.daisy.org/pipeline/modules/braille/html-to-pef/library.xpl">
+  
+  <x:scenario label="table" pending="- don't put '⠆ ' after last td in list
+                                     - is the second '3' in 'ASIA3 3 K#B' intensional?">
+    <x:documentation>
+      Tests render-table-by.
+    </x:documentation>
+    <x:call step="px:html-to-pef.convert">
+      <x:input port="source">
+        <x:document type="inline">
+          <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="da-DK" style="text-transform: lowercase">
+            <body>
+              <head>
+                <style type="text/css" media="embossed">
+                  @page {
+                    size: 32 27;
+                  }
+                  table {
+                    display: block;
+                    render-table-by: area, type-of-place, sub-area;
+                  }
+                  table::table-by(type-of-place) {
+                    display: block;
+                    margin-top: 1;
+                    margin-bottom: 1;
+                  }
+                  table::table-by(type-of-place)::list-item {
+                    display: block;
+                    margin-left: 2;
+                    text-indent: -2;
+                  }
+                  table caption {
+                    display: block;
+                    margin-bottom: 1;
+                  }
+                  th[axis=area] {
+                    table-header-policy: always;
+                  }
+                  th[axis=area]::after {
+                    content: ', ';
+                  }
+                  th[axis=sub-area]::after,
+                  th[axis=population]::after {
+                    content: ': ';
+                  }
+                  td::after {
+                    content: '⠆ ';
+                  }
+                </style>
+              </head>
+              <table>
+                <caption>
+                  If both nested row headers and nested column headers are present, the table
+                  contents will be grouped by combinations of the "outermost" headings. Note that
+                  the system fails to consider that not all headings have to be nested if one of
+                  them is; here only the "Cities" heading has subheadings, but "Mountains" is
+                  treated similarly regardless.
+                </caption>
+                <tr>
+                  <th/>
+                  <th/>
+                  <th axis="type-of-place" colspan="2">Cities</th>
+                  <th axis="type-of-place">Mountains</th>
+                </tr>
+                <tr>
+                  <th/>
+                  <th/>
+                  <th axis="population">pop &gt; 1 million</th>
+                  <th axis="population">pop &gt; 2 million</th>
+                  <th/>
+                </tr>
+                <tr>
+                  <th axis="area" rowspan="2">Earth</th>
+                  <th axis="sub-area">Europe</th>
+                  <td>Paris</td>
+                  <td>London</td>
+                  <td>Mont Blanc</td>
+                </tr>
+                <tr>
+                  <th axis="sub-area">Asia</th>
+                  <td>Beijing</td>
+                  <td>Beijing</td>
+                  <td>K2</td>
+                </tr>
+                <tr>
+                  <th axis="area">Elsewhere</th>
+                  <th axis="sub-area">Mars</th>
+                  <!-- <td colspan="2">None?</td> --> <td>None?</td> <td>None?</td>
+                  <td>Olympus Mons</td>
+                </tr>
+              </table>
+            </body>
+          </html>
+        </x:document>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:nota)(grade:1)'"/>
+      <x:option name="default-stylesheet" select="'http://www.daisy.org/pipeline/modules/braille/html-to-pef/css/default.css'"/>
+      <x:option name="stylesheet" select="''"/>
+      <x:option name="temp-dir" select="$temp-dir"/>
+    </x:call>
+    <x:context label="pef">
+      <x:document type="port" port="result"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="inline">
+        <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1">
+          <head>
+            <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
+              <dc:format>application/x-pef+xml</dc:format>
+            </meta>
+          </head>
+          <body>
+            <volume cols="32" rows="27" rowgap="0" duplex="true">
+              <section>
+                <page>
+                  <row>⠊⠋⠀⠃⠕⠞⠓⠀⠝⠑⠎⠞⠑⠙⠀⠗⠕⠺⠀⠓⠑⠁⠙⠑⠗⠎⠀⠁⠝⠙</row>
+                  <row>⠝⠑⠎⠞⠑⠙⠀⠉⠕⠇⠥⠍⠝⠀⠓⠑⠁⠙⠑⠗⠎⠀⠁⠗⠑</row>
+                  <row>⠏⠗⠑⠎⠑⠝⠞⠂⠀⠞⠓⠑⠀⠞⠁⠃⠇⠑⠀⠉⠕⠝⠞⠑⠝⠞⠎⠀⠺⠊⠇⠇</row>
+                  <row>⠃⠑⠀⠛⠗⠕⠥⠏⠑⠙⠀⠃⠽⠀⠉⠕⠍⠃⠊⠝⠁⠞⠊⠕⠝⠎⠀⠕⠋</row>
+                  <row>⠞⠓⠑⠀⠶⠕⠥⠞⠑⠗⠍⠕⠎⠞⠶⠀⠓⠑⠁⠙⠊⠝⠛⠎⠄⠀⠝⠕⠞⠑</row>
+                  <row>⠞⠓⠁⠞⠀⠞⠓⠑⠀⠎⠽⠎⠞⠑⠍⠀⠋⠁⠊⠇⠎⠀⠞⠕</row>
+                  <row>⠉⠕⠝⠎⠊⠙⠑⠗⠀⠞⠓⠁⠞⠀⠝⠕⠞⠀⠁⠇⠇⠀⠓⠑⠁⠙⠊⠝⠛⠎</row>
+                  <row>⠓⠁⠧⠑⠀⠞⠕⠀⠃⠑⠀⠝⠑⠎⠞⠑⠙⠀⠊⠋⠀⠕⠝⠑⠀⠕⠋⠀⠞⠓⠑⠍</row>
+                  <row>⠊⠎⠆⠀⠓⠑⠗⠑⠀⠕⠝⠇⠽⠀⠞⠓⠑⠀⠶⠉⠊⠞⠊⠑⠎⠶</row>
+                  <row>⠓⠑⠁⠙⠊⠝⠛⠀⠓⠁⠎⠀⠎⠥⠃⠓⠑⠁⠙⠊⠝⠛⠎⠂⠀⠃⠥⠞</row>
+                  <row>⠶⠍⠕⠥⠝⠞⠁⠊⠝⠎⠶⠀⠊⠎⠀⠞⠗⠑⠁⠞⠑⠙⠀⠎⠊⠍⠊⠇⠁⠗⠇⠽</row>
+                  <row>⠗⠑⠛⠁⠗⠙⠇⠑⠎⠎⠄</row>
+                  <row/>
+                  <row>⠑⠁⠗⠞⠓⠂⠀⠉⠊⠞⠊⠑⠎</row>
+                  <row/>
+                  <row>⠑⠥⠗⠕⠏⠑⠒⠀⠏⠕⠏⠀⠘⠎⠀⠼⠁⠀⠍⠊⠇⠇⠊⠕⠝⠒</row>
+                  <row>⠀⠀⠏⠁⠗⠊⠎⠆⠀⠏⠕⠏⠀⠘⠎⠀⠼⠃⠀⠍⠊⠇⠇⠊⠕⠝⠒</row>
+                  <row>⠀⠀⠇⠕⠝⠙⠕⠝</row>
+                  <row>⠁⠎⠊⠁⠒⠀⠏⠕⠏⠀⠘⠎⠀⠼⠁⠀⠍⠊⠇⠇⠊⠕⠝⠒</row>
+                  <row>⠀⠀⠃⠑⠊⠚⠊⠝⠛⠆⠀⠏⠕⠏⠀⠘⠎⠀⠼⠃⠀⠍⠊⠇⠇⠊⠕⠝⠒</row>
+                  <row>⠀⠀⠃⠑⠊⠚⠊⠝⠛</row>
+                  <row/>
+                  <row>⠑⠁⠗⠞⠓⠂⠀⠍⠕⠥⠝⠞⠁⠊⠝⠎</row>
+                  <row/>
+                  <row>⠑⠥⠗⠕⠏⠑⠒⠀⠒⠀⠍⠕⠝⠞⠀⠃⠇⠁⠝⠉</row>
+                  <row>⠁⠎⠊⠁⠒⠀⠒⠀⠅⠼⠃</row>
+                </page>
+                <page>
+                  <row>⠑⠇⠎⠑⠺⠓⠑⠗⠑⠂⠀⠉⠊⠞⠊⠑⠎</row>
+                  <row/>
+                  <row>⠍⠁⠗⠎⠒⠀⠏⠕⠏⠀⠘⠎⠀⠼⠁⠀⠍⠊⠇⠇⠊⠕⠝⠒⠀⠝⠕⠝⠑⠢⠆</row>
+                  <row>⠀⠀⠏⠕⠏⠀⠘⠎⠀⠼⠃⠀⠍⠊⠇⠇⠊⠕⠝⠒⠀⠝⠕⠝⠑⠢</row>
+                  <row/>
+                  <row>⠑⠇⠎⠑⠺⠓⠑⠗⠑⠂⠀⠍⠕⠥⠝⠞⠁⠊⠝⠎</row>
+                  <row/>
+                  <row>⠍⠁⠗⠎⠒⠀⠒⠀⠕⠇⠽⠍⠏⠥⠎⠀⠍⠕⠝⠎</row>
+                </page>
+              </section>
+            </volume>
+          </body>
+        </pef>
+      </x:document>
+    </x:expect>
+  </x:scenario>
+  
+</x:description>
