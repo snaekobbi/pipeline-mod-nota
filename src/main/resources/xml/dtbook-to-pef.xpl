@@ -16,7 +16,14 @@
     <p:option name="temp-dir"/>
     
     <p:option name="stylesheet"/>
-    <p:option name="transform"/>
+    
+    <p:option name="contraction-grade" required="false" px:data-type="nota:grade" select="'1'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Translation/formatting of text: Contraction grade</h2>
+            <p px:role="desc">`1` (uncontracted) or `2` (contracted).</p>
+        </p:documentation>
+    </p:option>
+    
     <p:option name="ascii-table"/>
     <p:option name="include-preview"/>
     <p:option name="include-brf"/>
@@ -28,7 +35,6 @@
     <p:option name="duplex"/>
     <p:option name="levels-in-footer"/>
     <p:option name="main-document-language"/>
-    <p:option name="contraction-grade"/>
     <p:option name="hyphenation-with-single-line-spacing"/>
     <p:option name="hyphenation-with-double-line-spacing"/>
     <p:option name="line-spacing"/>
@@ -65,7 +71,7 @@
         <p:with-option name="output-dir" select="$output-dir"/>
         <p:with-option name="temp-dir" select="$temp-dir"/>
         <p:with-option name="stylesheet" select="$stylesheet"/>
-        <p:with-option name="transform" select="$transform"/>
+        <p:with-option name="transform" select="concat('(formatter:dotify)(translator:nota)(grade:',$contraction-grade,')')"/>
         <p:with-option name="ascii-table" select="$ascii-table"/>
         <p:with-option name="include-preview" select="$include-preview"/>
         <p:with-option name="include-brf" select="$include-brf"/>
@@ -76,7 +82,6 @@
         <p:with-option name="duplex" select="$duplex"/>
         <p:with-option name="levels-in-footer" select="$levels-in-footer"/>
         <p:with-option name="main-document-language" select="$main-document-language"/>
-        <p:with-option name="contraction-grade" select="$contraction-grade"/>
         <p:with-option name="hyphenation-with-single-line-spacing" select="$hyphenation-with-single-line-spacing"/>
         <p:with-option name="hyphenation-with-double-line-spacing" select="$hyphenation-with-double-line-spacing"/>
         <p:with-option name="line-spacing" select="$line-spacing"/>
