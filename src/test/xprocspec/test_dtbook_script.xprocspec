@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.daisy.org/ns/xprocspec"
+               xmlns:nota="http://www.nota.dk"
+               script="http://www.nota.dk/pipeline/modules/braille/dtbook-to-pef.xpl">
+  
+  <x:scenario label="test-page-size">
+    <x:call step="nota:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="inline">
+          <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="da" version="2005-3">
+            <head>
+              <meta http-equiv="content-Type" content="text/xml;charset=UTF-8"/>
+            </head>
+            <book>
+              <frontmatter>
+                <doctitle>test of table layouts</doctitle>
+                <docauthor>nota</docauthor>
+              </frontmatter>
+              <bodymatter>
+                <level1>
+                  <h1>simple test</h1>
+                </level1>
+              </bodymatter>
+            </book>
+          </dtbook>
+        </x:document>
+      </x:input>
+      <x:option name="page-width" select="'35'"/>
+      <x:option name="page-height" select="'20'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test-page-size/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test-page-size/test_dtbook_script.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="inline">
+        <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1">
+          <head>
+            <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
+              <dc:format>application/x-pef+xml</dc:format>
+            </meta>
+          </head>
+          <body>
+            <volume cols="35" rows="20" rowgap="0" duplex="true">
+              <section>
+                <page>
+                  <row>⠞⠑⠎⠞⠀⠕⠋⠀⠞⠁⠃⠇⠑⠀⠇⠁⠽⠕⠥⠞⠎</row>
+                  <row>⠝⠕⠞⠁</row>
+                  <row>⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
+                </page>
+              </section>
+            </volume>
+          </body>
+        </pef>
+      </x:document>
+    </x:expect>
+  </x:scenario>
+  
+  <x:scenario label="test-duplex">
+    <x:call step="nota:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="inline">
+          <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="da" version="2005-3">
+            <head>
+              <meta http-equiv="content-Type" content="text/xml;charset=UTF-8"/>
+            </head>
+            <book>
+              <frontmatter>
+                <doctitle>test of table layouts</doctitle>
+                <docauthor>nota</docauthor>
+              </frontmatter>
+              <bodymatter>
+                <level1>
+                  <h1>simple test</h1>
+                </level1>
+              </bodymatter>
+            </book>
+          </dtbook>
+        </x:document>
+      </x:input>
+      <x:option name="duplex" select="'false'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test-duplex/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test-duplex/test_dtbook_script.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="inline">
+        <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1">
+          <head>
+            <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
+              <dc:format>application/x-pef+xml</dc:format>
+            </meta>
+          </head>
+          <body>
+            <volume cols="40" rows="25" rowgap="0" duplex="false">
+              <section>
+                <page>
+                  <row>⠞⠑⠎⠞⠀⠕⠋⠀⠞⠁⠃⠇⠑⠀⠇⠁⠽⠕⠥⠞⠎</row>
+                  <row>⠝⠕⠞⠁</row>
+                  <row>⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
+                </page>
+              </section>
+            </volume>
+          </body>
+        </pef>
+      </x:document>
+    </x:expect>
+  </x:scenario>
+  
+</x:description>

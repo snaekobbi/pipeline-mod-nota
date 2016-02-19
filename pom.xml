@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.daisy.pipeline.modules.braille</groupId>
     <artifactId>braille-modules-parent</artifactId>
-    <version>1.9.9-SNAPSHOT</version>
+    <version>1.9.10-SNAPSHOT</version>
     <relativePath />
   </parent>
 
@@ -34,7 +34,7 @@
       <artifactId>libhyphen-core</artifactId>
     </dependency>
     <!--
-        OSGi runtime dependencies
+        runtime dependencies
     -->
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
@@ -55,6 +55,10 @@
       <groupId>org.daisy.pipeline.modules.braille</groupId>
       <artifactId>libhyphen-libreoffice-tables</artifactId>
       <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline.modules.braille</groupId>
+      <artifactId>dtbook-to-pef</artifactId>
     </dependency>
     <!--
         test dependencies
@@ -77,7 +81,6 @@
     <dependency>
       <groupId>org.daisy.maven</groupId>
       <artifactId>xproc-engine-daisy-pipeline</artifactId>
-      <version>1.10-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
     <dependency>
