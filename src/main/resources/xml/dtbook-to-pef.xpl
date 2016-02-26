@@ -15,12 +15,12 @@
     <p:option name="output-dir"/>
     <p:option name="temp-dir"/>
     
-    <p:option name="stylesheet"/>
+    <p:option name="stylesheet" select="'http://www.nota.dk/pipeline/modules/braille/default.css'"/>
     
-    <p:option name="contraction-grade" required="false" px:data-type="nota:grade" select="'1'">
+    <p:option name="contraction-grade" required="false" px:data-type="nota:grade" select="'0'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Translation/formatting of text: Contraction grade</h2>
-            <p px:role="desc">`1` (uncontracted) or `2` (contracted).</p>
+            <p px:role="desc">`uforkortet` (uncontracted), `lille forkortels` (partly contracted) or `stor forkortelse` (fully contracted)</p>
         </p:documentation>
     </p:option>
     
@@ -30,13 +30,11 @@
     
     <p:option name="page-width"/>
     <p:option name="page-height"/>
-    <p:option name="predefined-page-formats"/>
     <p:option name="left-margin"/>
     <p:option name="duplex"/>
     <p:option name="levels-in-footer"/>
     <p:option name="main-document-language"/>
-    <p:option name="hyphenation-with-single-line-spacing"/>
-    <p:option name="hyphenation-with-double-line-spacing"/>
+    <p:option name="hyphenation"/>
     <p:option name="line-spacing"/>
     <p:option name="tab-width"/>
     <p:option name="capital-letters"/>
@@ -63,7 +61,6 @@
     <p:option name="number-of-pages"/>
     <p:option name="maximum-number-of-pages"/>
     <p:option name="minimum-number-of-pages"/>
-    <p:option name="sbsform-macros"/>
     
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/dtbook-to-pef.xpl"/>
     
@@ -77,13 +74,11 @@
         <p:with-option name="include-brf" select="$include-brf"/>
         <p:with-option name="page-width" select="$page-width"/>
         <p:with-option name="page-height" select="$page-height"/>
-        <p:with-option name="predefined-page-formats" select="$predefined-page-formats"/>
         <p:with-option name="left-margin" select="$left-margin"/>
         <p:with-option name="duplex" select="$duplex"/>
         <p:with-option name="levels-in-footer" select="$levels-in-footer"/>
         <p:with-option name="main-document-language" select="$main-document-language"/>
-        <p:with-option name="hyphenation-with-single-line-spacing" select="$hyphenation-with-single-line-spacing"/>
-        <p:with-option name="hyphenation-with-double-line-spacing" select="$hyphenation-with-double-line-spacing"/>
+        <p:with-option name="hyphenation" select="$hyphenation"/>
         <p:with-option name="line-spacing" select="$line-spacing"/>
         <p:with-option name="tab-width" select="$tab-width"/>
         <p:with-option name="capital-letters" select="$capital-letters"/>
@@ -110,7 +105,6 @@
         <p:with-option name="number-of-pages" select="$number-of-pages"/>
         <p:with-option name="maximum-number-of-pages" select="$maximum-number-of-pages"/>
         <p:with-option name="minimum-number-of-pages" select="$minimum-number-of-pages"/>
-        <p:with-option name="sbsform-macros" select="$sbsform-macros"/>
     </px:dtbook-to-pef>
     
 </p:declare-step>

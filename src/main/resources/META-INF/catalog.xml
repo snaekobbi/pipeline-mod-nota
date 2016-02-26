@@ -5,6 +5,8 @@
        px:extends-script="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/dtbook-to-pef.xpl"/>
   <!-- data-types -->
   <uri name="http://www.nota.dk/pipeline/modules/braille/dtbook-to-pef/grade.xml" uri="../data-types/grade.xml" px:data-type="true"/>
+  <!-- css -->
+  <uri name="http://www.nota.dk/pipeline/modules/braille/default.css" uri="../css/default.css"/>
   <!-- dependencies -->
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:css-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:liblouis-utils"/>

@@ -71,7 +71,7 @@ public interface NotaTranslator {
 		 *
 		 * - translator: Will only match if the value is `nota'.
 		 * - locale: Will only match if the language subtag is 'da'.
-		 * - grade: `1' or `2'.
+		 * - grade: `0' or `2'.
 		 *
 		 */
 		protected final Iterable<BrailleTranslator> _get(Query query) {
@@ -90,15 +90,15 @@ public interface NotaTranslator {
 					if (q.containsKey("grade")) {
 						String v = q.removeOnly("grade").getValue().get();
 						final int grade;
-						if (v.equals("1"))
-							grade = 1;
+						if (v.equals("0"))
+							grade = 0;
 						else if (v.equals("2"))
 							grade = 2;
 						else
 							return empty;
 						if (q.isEmpty()) {
 							Iterable<LibhyphenHyphenator> hyphenators = logSelect(hyphenTable, libhyphenHyphenatorProvider);
-							final Query liblouisTable = grade == 1 ? uncontractedTable : contractedTable;
+							final Query liblouisTable = grade == 0 ? uncontractedTable : contractedTable;
 							return concat(
 								transform(
 									hyphenators,
@@ -120,7 +120,9 @@ public interface NotaTranslator {
 			private final int grade;
 			
 			private TransformImpl(int grade, LiblouisTranslator translator) {
-				Map<String,String> options = ImmutableMap.of("query", mutableQuery().add("id", this.getIdentifier()).toString());
+				Map<String,String> options = ImmutableMap.of(
+					"text-transform", mutableQuery().add("id", this.getIdentifier()).toString(),
+					"contraction-grade", ""+grade);
 				xproc = new XProc(href, null, options);
 				this.grade = grade;
 				this.translator = translator;

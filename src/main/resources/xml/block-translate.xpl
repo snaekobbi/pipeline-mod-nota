@@ -4,13 +4,21 @@
             xmlns:pxi="http://www.daisy.org/ns/pipeline/xproc/internal"
             exclude-inline-prefixes="#all">
 	
-	<p:option name="query" required="true"/>
+	<p:option name="contraction-grade" required="true"/>
+	<p:option name="text-transform" required="true"/>
+	
+	<p:xslt>
+		<p:input port="stylesheet">
+			<p:document href="insert-titlepage.xsl"/>
+		</p:input>
+		<p:with-param name="contraction-grade" select="$contraction-grade"/>
+	</p:xslt>
 	
 	<p:xslt>
 		<p:input port="stylesheet">
 			<p:document href="block-translate.xsl"/>
 		</p:input>
-		<p:with-param name="query" select="$query"/>
+		<p:with-param name="text-transform" select="$text-transform"/>
 	</p:xslt>
 	
 </p:pipeline>

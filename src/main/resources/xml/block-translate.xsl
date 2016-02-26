@@ -9,7 +9,7 @@
 	
 	<xsl:import href="http://www.daisy.org/pipeline/modules/braille/css-utils/transform/block-translator-template.xsl"/>
 	
-	<xsl:param name="query" required="yes"/>
+	<xsl:param name="text-transform" required="yes"/>
 	
 	<xsl:template match="css:block" mode="#default before after">
 		<xsl:variable name="text" as="text()*" select="//text()"/>
@@ -26,7 +26,7 @@
 			</xsl:for-each>
 		</xsl:variable>
 		<xsl:apply-templates select="node()[1]" mode="treewalk">
-			<xsl:with-param name="new-text-nodes" select="pf:text-transform($query,$text,$style)"/>
+			<xsl:with-param name="new-text-nodes" select="pf:text-transform($text-transform,$text,$style)"/>
 		</xsl:apply-templates>
 	</xsl:template>
 	

@@ -1,0 +1,11 @@
+@volume:first  {
+    @begin {
+        content: flow(titlepage) flow(colophon);
+    }
+}
+
+@volume  {
+    @begin {
+        content: flow(titlepage);
+    }
+}

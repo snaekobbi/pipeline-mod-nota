@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <choice id="nota:grade">
+	<documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0" xml:lang="da">
+		<value>uforkortet</value>
+		<value>lille forkortelse (not supported yet)</value>
+		<value>stor forkortelse</value>
+	</documentation>
+	<value>0</value>
 	<value>1</value>
 	<value>2</value>
 </choice>
