@@ -25,7 +25,7 @@
           </dtbook>
         </x:document>
       </x:input>
-      <x:option name="output-dir" select="concat($temp-dir,'output-dir/generated-content/')"/>
+      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/generated-content/')"/>
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
     </x:call>
     <x:context label="result">
@@ -91,7 +91,7 @@
       <x:option name="page-width" select="35"/>
       <x:option name="page-height" select="20"/>
       <x:option name="show-braille-page-numbers" select="false()"/>
-      <x:option name="output-dir" select="concat($temp-dir,'output-dir/page-size/')"/>
+      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/page-size/')"/>
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
     </x:call>
     <x:context label="result">
@@ -139,7 +139,7 @@
       </x:input>
       <x:option name="duplex" select="false()"/>
       <x:option name="show-braille-page-numbers" select="false()"/>
-      <x:option name="output-dir" select="concat($temp-dir,'output-dir/duplex/')"/>
+      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/duplex/')"/>
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
     </x:call>
     <x:context label="result">
@@ -187,7 +187,7 @@
       </x:input>
       <x:option name="contraction-grade" select="2"/>
       <x:option name="show-braille-page-numbers" select="false()"/>
-      <x:option name="output-dir" select="concat($temp-dir,'output-dir/contraction-grade/')"/>
+      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/contraction-grade/')"/>
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
     </x:call>
     <x:context label="result">

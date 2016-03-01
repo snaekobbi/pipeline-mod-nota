@@ -12,12 +12,28 @@
     </p:documentation>
     
     <p:input port="source"/>
-    <p:option name="output-dir"/>
+    <p:option name="pef-output-dir"/>
+    <p:option name="brf-output-dir"/>
+    <p:option name="preview-output-dir"/>
     <p:option name="temp-dir"/>
     
     <p:option name="stylesheet" select="'http://www.nota.dk/pipeline/modules/braille/default.css'"/>
     
-    <p:option name="contraction-grade" required="false" px:data-type="nota:grade" select="'0'">
+    <p:option name="contraction-grade" required="false" select="'0'">
+        <p:pipeinfo>
+            <px:data-type>
+                <choice>
+                    <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0" xml:lang="da">
+                        <value>uforkortet</value>
+                        <value>lille forkortelse (not supported yet)</value>
+                        <value>stor forkortelse</value>
+                    </documentation>
+                    <value>0</value>
+                    <value>1</value>
+                    <value>2</value>
+                </choice>
+            </px:data-type>
+        </p:pipeinfo>
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Translation/formatting of text: Contraction grade</h2>
             <p px:role="desc">`uforkortet` (uncontracted), `lille forkortels` (partly contracted) or `stor forkortelse` (fully contracted)</p>
@@ -65,7 +81,9 @@
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/dtbook-to-pef.xpl"/>
     
     <px:dtbook-to-pef>
-        <p:with-option name="output-dir" select="$output-dir"/>
+        <p:with-option name="pef-output-dir" select="$pef-output-dir"/>
+        <p:with-option name="brf-output-dir" select="$brf-output-dir"/>
+        <p:with-option name="preview-output-dir" select="$preview-output-dir"/>
         <p:with-option name="temp-dir" select="$temp-dir"/>
         <p:with-option name="stylesheet" select="$stylesheet"/>
         <p:with-option name="transform" select="concat('(formatter:dotify)(translator:nota)(grade:',$contraction-grade,')')"/>

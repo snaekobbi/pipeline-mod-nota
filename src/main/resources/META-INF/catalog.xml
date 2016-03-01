@@ -2,9 +2,7 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" xmlns:px="http://www.daisy.org/ns/pipeline">
   <!-- scripts -->
   <uri name="http://www.nota.dk/pipeline/modules/braille/dtbook-to-pef.xpl" uri="../xml/dtbook-to-pef.xpl"
-       px:extends-script="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/dtbook-to-pef.xpl"/>
-  <!-- data-types -->
-  <uri name="http://www.nota.dk/pipeline/modules/braille/dtbook-to-pef/grade.xml" uri="../data-types/grade.xml" px:data-type="true"/>
+       px:script="true" px:extends="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/dtbook-to-pef.xpl"/>
   <!-- css -->
   <uri name="http://www.nota.dk/pipeline/modules/braille/default.css" uri="../css/default.css"/>
   <!-- dependencies -->
