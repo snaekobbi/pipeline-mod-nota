@@ -50,10 +50,12 @@
     
     <xsl:template name="TITLE_PAGE_CONTENT">
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
+            <xsl:attribute name="class" select="'author'"/>
             <xsl:attribute name="style" select="'display:block'"/>
             <xsl:value-of select="$AUTHOR"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
+            <xsl:attribute name="class" select="'title'"/>
             <xsl:attribute name="style" select="'display:block'"/>
             <xsl:value-of select="$TITLE"/>
         </xsl:element>
@@ -61,12 +63,12 @@
             <xsl:attribute name="style" select="'display:block'"/>
             <xsl:value-of
                 select="if ($contraction-grade eq '0')
-                then 'uforkortet'
-                else if ($contraction-grade eq '1')
-                then 'lille forkortelse'
-                else if ($contraction-grade eq '2')
-                then 'stor forkortelse'
-                else ''"/>
+                        then 'uforkortet'
+                        else if ($contraction-grade eq '1')
+                        then 'lille forkortelse'
+                        else if ($contraction-grade eq '2')
+                        then 'stor forkortelse'
+                        else ''"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
             <xsl:attribute name="style" select="'display:block'"/>
@@ -80,11 +82,8 @@
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
             <xsl:attribute name="style" select="'display:block'"/>
-            nota
-        </xsl:element>
-        <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
-            <xsl:attribute name="style" select="'display:block'"/>
-            nationalbibliotek for mennesker med læsevanskeligheder
+            nota<br/>nationalbibliotek for<br/>mennesker med læsevanskeligheder<br/>
+            københavn <xsl:value-of select="$YEAR"/>
         </xsl:element>
     </xsl:template>
     
@@ -118,10 +117,12 @@
     <xsl:template match="frontmatter/doctitle">
         <xsl:next-match/>
         <level depth="1"
+               class="title_page"
                style="display:block; text-align:center; page-break-after: always; page-break-inside: avoid; flow: titlepage">
             <xsl:call-template name="TITLE_PAGE_CONTENT"/>
         </level>
-        <level depth="1" class="colophon"
+        <level depth="1"
+               class="colophon"
                style="display:block; page-break-after: always; page-break-inside: avoid; flow: colophon">
             <xsl:call-template name="COLOPHON_CONTENT"/>
         </level>
@@ -133,10 +134,12 @@
         <xsl:copy>
             <xsl:sequence select="@*"/>
             <section xmlns="http://www.w3.org/1999/xhtml"
+                     class="title_page"
                      style="display:block; text-align:center; page-break-after: always; page-break-inside: avoid; flow: titlepage">
                 <xsl:call-template name="TITLE_PAGE_CONTENT"/>
             </section>
             <section xmlns="http://www.w3.org/1999/xhtml"
+                     class="colophon"
                      style="display:block; page-break-after: always; page-break-inside: avoid; flow: colophon">
                 <xsl:call-template name="COLOPHON_CONTENT"/>
             </section>
