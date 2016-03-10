@@ -4,6 +4,8 @@ import java.io.File;
 
 import org.daisy.maven.xproc.xprocspec.XProcSpecRunner;
 
+import com.google.common.collect.ImmutableMap;
+
 import static org.daisy.pipeline.pax.exam.Options.brailleModule;
 import static org.daisy.pipeline.pax.exam.Options.calabashConfigFile;
 import static org.daisy.pipeline.pax.exam.Options.domTraversalPackage;
@@ -33,7 +35,7 @@ import static org.ops4j.pax.exam.CoreOptions.systemPackage;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
-public class TranslationTest {
+public class XProcSpecTest {
 	
 	@Inject
 	private XProcSpecRunner xprocspecRunner;
@@ -41,10 +43,18 @@ public class TranslationTest {
 	@Test
 	public void runXProcSpec() throws Exception {
 		File baseDir = new File(PathUtils.getBaseDir());
-		boolean success = xprocspecRunner.run(new File(baseDir, "src/test/xprocspec"),
+		boolean success = xprocspecRunner.run(ImmutableMap.of(
+			                                      "test_dtbook-to-pef",
+			                                      new File(baseDir, "src/test/xprocspec/test_dtbook-to-pef.xprocspec"),
+			                                      "test_dtbook-to-pef_tables",
+			                                      new File(baseDir, "src/test/xprocspec/test_dtbook-to-pef_tables.xprocspec"),
+			                                      "test_translator",
+			                                      new File(baseDir, "src/test/xprocspec/test_translator.xprocspec")
+			                                      ),
 		                                      new File(baseDir, "target/xprocspec-reports"),
 		                                      new File(baseDir, "target/surefire-reports"),
 		                                      new File(baseDir, "target/xprocspec"),
+		                                      null,
 		                                      new XProcSpecRunner.Reporter.DefaultReporter());
 		assertTrue("XProcSpec tests should run with success", success);
 	}

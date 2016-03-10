@@ -3,7 +3,7 @@
                xmlns:nota="http://www.nota.dk"
                script="http://www.nota.dk/pipeline/modules/braille/dtbook-to-pef.xpl">
   
-  <x:scenario label="generated-content">
+  <x:scenario label="generated-content" pending="blank page at the end">
     <x:call step="nota:dtbook-to-pef">
       <x:input port="source">
         <x:document type="inline">
@@ -25,11 +25,14 @@
           </dtbook>
         </x:document>
       </x:input>
+      <x:option name="show-braille-page-numbers" select="false()"/>
+      <x:option name="include-brf" select="true()"/>
       <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/generated-content/')"/>
+      <x:option name="brf-output-dir" select="concat($temp-dir,'output-dir/generated-content/')"/>
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
     </x:call>
     <x:context label="result">
-      <x:document type="file" base-uri="temp-dir" href="output-dir/generated-content/test_dtbook_script.pef"/>
+      <x:document type="file" base-uri="temp-dir" href="output-dir/generated-content/test_dtbook-to-pef.pef"/>
     </x:context>
     <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">
@@ -40,27 +43,26 @@
             </meta>
           </head>
           <body>
-            <volume cols="40" rows="25" rowgap="0" duplex="true">
+            <volume cols="32" rows="27" rowgap="0" duplex="true">
               <section>
                 <page>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠥⠋⠕⠗⠅⠕⠗⠞⠑⠞</row>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁⠄⠀⠃⠊⠝⠙⠀⠁⠋⠀⠼⠁</row>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠝⠕⠞⠁</row>
-                  <row>⠝⠁⠞⠊⠕⠝⠁⠇⠃⠊⠃⠇⠊⠕⠞⠑⠅⠀⠋⠕⠗⠀⠍⠑⠝⠝⠑⠎⠅⠑⠗⠀⠍⠑⠙⠀⠇⠜⠤</row>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠎⠑⠧⠁⠝⠎⠅⠑⠇⠊⠛⠓⠑⠙⠑⠗</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠥⠋⠕⠗⠅⠕⠗⠞⠑⠞</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁⠄⠀⠃⠊⠝⠙⠀⠁⠋⠀⠼⠁</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠝⠕⠞⠁</row>
+                  <row>⠀⠀⠀⠀⠀⠝⠁⠞⠊⠕⠝⠁⠇⠃⠊⠃⠇⠊⠕⠞⠑⠅⠀⠋⠕⠗</row>
+                  <row>⠍⠑⠝⠝⠑⠎⠅⠑⠗⠀⠍⠑⠙⠀⠇⠜⠎⠑⠧⠁⠝⠎⠅⠑⠇⠊⠛⠓⠑⠙⠑⠗</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠅⠪⠃⠑⠝⠓⠁⠧⠝⠀⠼⠃⠚⠁⠋</row>
+                </page>
+                <page>
                   <row>⠊⠎⠃⠝</row>
-                  <row>⠋⠑⠚⠇⠀⠊⠀⠏⠥⠝⠅⠞⠥⠙⠛⠁⠧⠑⠝⠀⠅⠁⠝⠀⠗⠁⠏⠏⠕⠗⠞⠑⠗⠑⠎⠀⠏⠡⠀</row>
-                  <row>⠁⠥⠃⠘⠁⠝⠕⠞⠁⠄⠝⠥</row>
+                  <row>⠋⠑⠚⠇⠀⠊⠀⠏⠥⠝⠅⠞⠥⠙⠛⠁⠧⠑⠝⠀⠅⠁⠝⠀⠗⠁⠏⠏⠕⠗⠤</row>
+                  <row>⠞⠑⠗⠑⠎⠀⠏⠡⠀⠁⠥⠃⠘⠁⠝⠕⠞⠁⠄⠝⠥</row>
                   <row>⠼⠁⠄⠀⠏⠥⠝⠅⠞⠃⠊⠝⠙⠒⠀⠤</row>
                 </page>
               </section>
               <section>
                 <page>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
-                  <row>⠞⠊⠞⠇⠑</row>
-                  <row>⠝⠕⠞⠁</row>
-                  <row>⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
+                  <row>⠀⠀⠀⠀⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
                 </page>
               </section>
             </volume>
@@ -95,7 +97,7 @@
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
     </x:call>
     <x:context label="result">
-      <x:document type="file" base-uri="temp-dir" href="output-dir/page-size/test_dtbook_script.pef"/>
+      <x:document type="file" base-uri="temp-dir" href="output-dir/page-size/test_dtbook-to-pef.pef"/>
     </x:context>
     <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">
@@ -143,7 +145,7 @@
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
     </x:call>
     <x:context label="result">
-      <x:document type="file" base-uri="temp-dir" href="output-dir/duplex/test_dtbook_script.pef"/>
+      <x:document type="file" base-uri="temp-dir" href="output-dir/duplex/test_dtbook-to-pef.pef"/>
     </x:context>
     <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">
@@ -154,7 +156,7 @@
             </meta>
           </head>
           <body>
-            <volume cols="40" rows="25" rowgap="0" duplex="false">
+            <volume cols="32" rows="27" rowgap="0" duplex="false">
               <section>
                 <page>
                   <row>⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
@@ -191,7 +193,7 @@
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
     </x:call>
     <x:context label="result">
-      <x:document type="file" base-uri="temp-dir" href="output-dir/contraction-grade/test_dtbook_script.pef"/>
+      <x:document type="file" base-uri="temp-dir" href="output-dir/contraction-grade/test_dtbook-to-pef.pef"/>
     </x:context>
     <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">
@@ -202,7 +204,7 @@
             </meta>
           </head>
           <body>
-            <volume cols="40" rows="25" rowgap="0" duplex="true">
+            <volume cols="32" rows="27" rowgap="0" duplex="true">
               <section>
                 <page>
                   <row>⠎⠊⠍⠏⠇⠑⠀⠳⠵</row>
@@ -212,6 +214,23 @@
           </body>
         </pef>
       </x:document>
+    </x:expect>
+  </x:scenario>
+  
+  <x:scenario label="various-css" pending="TODO: fix css and also fix expected output">
+    <x:call step="nota:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/nota_braille_test.xml"/>
+      </x:input>
+      <x:option name="contraction-grade" select="0"/>
+      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/various-css/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/various-css/nota_braille_test.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/nota_braille_test_expected.pef"/>
     </x:expect>
   </x:scenario>
   

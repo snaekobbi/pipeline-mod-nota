@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <x:description xmlns:x="http://www.daisy.org/ns/xprocspec"
-               xmlns:px="http://www.daisy.org/ns/pipeline/xproc"
-               script="http://www.daisy.org/pipeline/modules/braille/html-to-pef/library.xpl">
+               xmlns:nota="http://www.nota.dk"
+               script="http://www.nota.dk/pipeline/modules/braille/dtbook-to-pef.xpl">
   
-  <x:scenario label="table" pending="- don't put '⠆ ' after last td in list
-                                     - is the second '3' in 'ASIA3 3 K#B' intensional?">
+  <x:scenario label="render-table-by" pending="is the second '3' in 'ASIA3 3 K#B' intensional?">
     <x:documentation>
       Tests render-table-by.
     </x:documentation>
-    <x:call step="px:html-to-pef.convert">
+    <x:call step="nota:dtbook-to-pef">
       <x:input port="source">
         <x:document type="inline">
-          <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="da-DK" style="text-transform: lowercase">
+          <html xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="da-DK">
             <body>
               <head>
                 <style type="text/css" media="embossed">
-                  @page {
-                    size: 32 27;
-                  }
                   table {
                     display: block;
                     render-table-by: area, type-of-place, sub-area;
+                    text-transform: lowercase;
+                    hyphens: none;
                   }
                   table::table-by(type-of-place) {
                     display: block;
@@ -31,6 +29,12 @@
                     display: block;
                     margin-left: 2;
                     text-indent: -2;
+                  }
+                  table::table-by(sub-area)::list-item::after {
+                    content: '⠆ ';
+                  }
+                  table::table-by(sub-area)::list-item:last-child::after {
+                    content: none;
                   }
                   table caption {
                     display: block;
@@ -45,9 +49,6 @@
                   th[axis=sub-area]::after,
                   th[axis=population]::after {
                     content: ': ';
-                  }
-                  td::after {
-                    content: '⠆ ';
                   }
                 </style>
               </head>
@@ -88,7 +89,7 @@
                 <tr>
                   <th axis="area">Elsewhere</th>
                   <th axis="sub-area">Mars</th>
-                  <!-- <td colspan="2">None?</td> --> <td>None?</td> <td>None?</td>
+                  <td>None?</td> <td>None?</td>
                   <td>Olympus Mons</td>
                 </tr>
               </table>
@@ -96,13 +97,15 @@
           </html>
         </x:document>
       </x:input>
-      <x:option name="transform" select="'(formatter:dotify)(translator:nota)(grade:1)'"/>
-      <x:option name="default-stylesheet" select="'http://www.daisy.org/pipeline/modules/braille/html-to-pef/css/default.css'"/>
-      <x:option name="stylesheet" select="''"/>
-      <x:option name="temp-dir" select="$temp-dir"/>
+      <x:option name="show-braille-page-numbers" select="false()"/>
+      <x:option name="contraction-grade" select="0"/>
+      <x:option name="include-brf" select="true()"/>
+      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/render-table-by/')"/>
+      <x:option name="brf-output-dir" select="concat($temp-dir,'output-dir/render-table-by/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
     </x:call>
-    <x:context label="pef">
-      <x:document type="port" port="result"/>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/render-table-by/test_dtbook-to-pef_tables.pef"/>
     </x:context>
     <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">

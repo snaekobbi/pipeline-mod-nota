@@ -82,7 +82,9 @@
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
             <xsl:attribute name="style" select="'display:block'"/>
-            nota<br/>nationalbibliotek for<br/>mennesker med læsevanskeligheder<br/>
+            nota<br style="::before {{ content:'&#x0A;'; white-space: pre-line }}"/>
+            nationalbibliotek for<br style="::before {{ content:'&#x0A;'; white-space: pre-line }}"/>
+            mennesker med læsevanskeligheder<br style="::before {{ content:'&#x0A;'; white-space: pre-line }}"/>
             københavn <xsl:value-of select="$YEAR"/>
         </xsl:element>
     </xsl:template>
@@ -118,7 +120,7 @@
         <xsl:next-match/>
         <level depth="1"
                class="title_page"
-               style="display:block; text-align:center; page-break-after: always; page-break-inside: avoid; flow: titlepage">
+               style="display:block; text-align:center; page-break-after: always; page-break-inside: avoid; flow: title-page">
             <xsl:call-template name="TITLE_PAGE_CONTENT"/>
         </level>
         <level depth="1"

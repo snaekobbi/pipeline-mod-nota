@@ -17,7 +17,7 @@
     <p:option name="preview-output-dir"/>
     <p:option name="temp-dir"/>
     
-    <p:option name="stylesheet" select="'http://www.nota.dk/pipeline/modules/braille/default.css'"/>
+    <p:option name="stylesheet" select="'http://www.nota.dk/pipeline/modules/braille/default.scss'"/>
     
     <p:option name="contraction-grade" required="false" select="'0'">
         <p:pipeinfo>
@@ -44,8 +44,8 @@
     <p:option name="include-preview"/>
     <p:option name="include-brf"/>
     
-    <p:option name="page-width"/>
-    <p:option name="page-height"/>
+    <p:option name="page-width" select="32"/>
+    <p:option name="page-height" select="27"/>
     <p:option name="left-margin"/>
     <p:option name="duplex"/>
     <p:option name="levels-in-footer"/>
