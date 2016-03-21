@@ -6,6 +6,7 @@
                 xmlns:css="http://www.daisy.org/ns/pipeline/braille-css"
                 xmlns:html="http://www.w3.org/1999/xhtml"
                 xmlns:dtb="http://www.daisy.org/z3986/2005/dtbook/"
+                xmlns:pxi="http://www.daisy.org/ns/pipeline/xproc/internal"
                 exclude-result-prefixes="#all">
 	
 	<xsl:import href="http://www.daisy.org/pipeline/modules/braille/css-utils/transform/block-translator-template.xsl"/>
@@ -17,8 +18,18 @@
 		<xsl:variable name="style" as="xs:string*">
 			<xsl:for-each select="$text">
 				<xsl:variable name="inline-style" as="element()*"
-				              select="css:computed-properties($inline-properties[not(.='word-spacing')], true(), parent::*)"/>
-				<xsl:sequence select="css:serialize-declaration-list($inline-style[not(@value=css:initial-value(@name))])"/>
+				              select="css:computed-properties($inline-properties, true(), parent::*)"/>
+				<xsl:variable name="inline-style" as="element()*">
+					<xsl:variable name="lang" as="xs:string" select="pxi:lang(parent::*)"/>
+					<xsl:variable name="danish" as="xs:boolean" select="tokenize($lang,'-')[1]='da'"/>
+					<xsl:apply-templates select="$inline-style" mode="property">
+						<xsl:with-param name="danish" select="$danish"/>
+					</xsl:apply-templates>
+					<xsl:if test="not($danish) and not($inline-style[@name='text-transform'])">
+						<css:property name="text-transform" value="uncontracted"/>
+					</xsl:if>
+				</xsl:variable>
+				<xsl:sequence select="css:serialize-declaration-list($inline-style)"/>
 			</xsl:for-each>
 		</xsl:variable>
 		<xsl:variable name="new-text-nodes" as="xs:string*">
@@ -30,6 +41,27 @@
 			<xsl:with-param name="new-text-nodes" select="$new-text-nodes"/>
 		</xsl:apply-templates>
 	</xsl:template>
+	
+	<xsl:template match="css:property" mode="property">
+		<xsl:if test="not(@value=css:initial-value(@name))">
+			<xsl:sequence select="."/>
+		</xsl:if>
+	</xsl:template>
+	
+	<xsl:template match="css:property[@name='text-transform' and not(@value='none')]" mode="property">
+		<xsl:param name="danish" as="xs:boolean" select="true()"/>
+		<xsl:choose>
+			<xsl:when test="not($danish)">
+				<xsl:variable name="value" as="xs:string*" select="tokenize(@value,'\s+')[not(.=('','auto'))]"/>
+				<css:property name="text-transform" value="{string-join(($value,'uncontracted'),' ')}"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:next-match/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<xsl:template match="css:property[@name='word-spacing']" mode="property"/>
 	
 	<xsl:template match="css:property[@name=('letter-spacing',
 	                                         'font-style',

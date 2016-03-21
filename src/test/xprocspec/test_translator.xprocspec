@@ -154,7 +154,7 @@
     <x:call step="pxi:transform">
       <x:input port="source">
         <x:document type="inline">
-          <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" style="hyphens:auto">
+          <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" style="hyphens:auto" xml:lang="da">
             <book>
               <frontmatter>
                 <doctitle>title</doctitle>
@@ -175,7 +175,7 @@
     </x:context>
     <x:expect label="result" type="compare">
       <x:document type="inline">
-        <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" style="hyphens: manual; text-transform: none">
+        <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="da" style="hyphens: manual; text-transform: none">
           <book>
             <frontmatter>
               <doctitle>⠞⠊⠞­⠇⠑</doctitle>
@@ -215,6 +215,30 @@
     </x:expect>
   </x:scenario>
   
+  <x:scenario label="foreign language">
+    <x:call step="pxi:transform">
+      <x:input port="source">
+        <x:document type="inline">
+          <div xmlns="http://www.w3.org/1999/xhtml" xml:lang="da">
+            contracted <span xml:lang="nl">uncontracted</span>
+          </div>
+        </x:document>
+      </x:input>
+      <x:option name="grade" select="2"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="port" port="result"/>
+    </x:context>
+    <x:expect label="result" type="compare">
+      <x:document type="inline">
+        <div xmlns="http://www.w3.org/1999/xhtml" xml:lang="da" style="text-transform: none">
+          ⠉⠕⠝⠞⠗⠁⠉⠳⠙
+          <span xml:lang="nl">⠥⠝⠉⠕⠝⠞⠗⠁⠉⠞⠑⠙</span>
+        </div>
+      </x:document>
+    </x:expect>
+  </x:scenario>
+
   <x:scenario label="comments" pending="bug">
     <x:call step="pxi:transform">
       <x:input port="source">
