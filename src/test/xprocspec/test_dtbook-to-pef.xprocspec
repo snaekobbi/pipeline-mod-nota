@@ -217,6 +217,84 @@
     </x:expect>
   </x:scenario>
   
+  <x:scenario label="capital-letters">
+    <x:call step="nota:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="inline">
+          <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="da" version="2005-3">
+            <book>
+              <bodymatter>
+                <level1>
+                  <h1>Simple test</h1>
+                </level1>
+              </bodymatter>
+            </book>
+          </dtbook>
+        </x:document>
+      </x:input>
+      <x:option name="show-braille-page-numbers" select="false()"/>
+    </x:call>
+    <x:scenario label="disabled by default">
+      <x:call>
+        <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/capital-letters/disabled/')"/>
+        <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+      </x:call>
+      <x:context label="result">
+        <x:document type="file" base-uri="temp-dir" href="output-dir/capital-letters/disabled/test_dtbook-to-pef.pef"/>
+      </x:context>
+      <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+        <x:document type="inline">
+          <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1">
+            <head>
+              <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
+                <dc:format>application/x-pef+xml</dc:format>
+              </meta>
+            </head>
+            <body>
+              <volume cols="32" rows="27" rowgap="0" duplex="true">
+                <section>
+                  <page>
+                    <row>⠀⠀⠀⠀⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
+                  </page>
+                </section>
+              </volume>
+            </body>
+          </pef>
+        </x:document>
+      </x:expect>
+    </x:scenario>
+    <x:scenario label="enabled">
+      <x:call>
+        <x:option name="capital-letters" select="true()"/>
+        <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/capital-letters/enabled/')"/>
+        <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+      </x:call>
+      <x:context label="result">
+        <x:document type="file" base-uri="temp-dir" href="output-dir/capital-letters/enabled/test_dtbook-to-pef.pef"/>
+      </x:context>
+      <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+        <x:document type="inline">
+          <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1">
+            <head>
+              <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
+                <dc:format>application/x-pef+xml</dc:format>
+              </meta>
+            </head>
+            <body>
+              <volume cols="32" rows="27" rowgap="0" duplex="true">
+                <section>
+                  <page>
+                    <row>⠀⠀⠀⠀⠨⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
+                  </page>
+                </section>
+              </volume>
+            </body>
+          </pef>
+        </x:document>
+      </x:expect>
+    </x:scenario>
+  </x:scenario>
+  
   <x:scenario label="various-css" pending="TODO: fix css and also fix expected output">
     <x:call step="nota:dtbook-to-pef">
       <x:input port="source">

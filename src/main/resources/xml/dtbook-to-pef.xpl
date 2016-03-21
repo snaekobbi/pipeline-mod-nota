@@ -53,7 +53,7 @@
     <p:option name="hyphenation"/>
     <p:option name="line-spacing"/>
     <p:option name="tab-width"/>
-    <p:option name="capital-letters"/>
+    <p:option name="capital-letters" select="'false'"/>
     <p:option name="accented-letters"/>
     <p:option name="polite-forms"/>
     <p:option name="downshift-ordinal-numbers"/>
