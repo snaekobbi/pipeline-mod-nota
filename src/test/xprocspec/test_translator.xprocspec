@@ -180,7 +180,7 @@
             <frontmatter>
               <doctitle>⠞⠊⠞­⠇⠑</doctitle>
               <level depth="1" class="title_page"
-                     style="display: block; text-align: center; page-break-after: always; page-break-inside: avoid; flow: title-page">
+                     style="display: block; text-align: center; page-break-before: always; page-break-inside: avoid; flow: title-page">
                 <p class="author" style="display: block"/>
                 <p class="title" style="display: block"/>
                 <p style="display: block">⠵⠭ ⠋⠭­⠅⠭­⠳⠇⠎⠑</p>
@@ -196,7 +196,7 @@
                 </p>
               </level>
               <level depth="1" class="colophon"
-                     style="display: block; page-break-after: always; page-break-inside: avoid; flow: colophon">
+                     style="display: block; page-break-before: always; page-break-inside: avoid; flow: colophon">
                 <p style="display: block"/>
                 <p style="display: block">⠊⠎⠃⠝</p>
                 <p style="display: block">⠋⠑⠚⠇ ⠊ ⠏⠥⠝⠅­⠞⠥⠙­⠛⠁­⠧⠣ ⠅ ⠗⠁⠏­⠏⠭­⠳­⠷⠎ ⠏ ⠁⠥⠃⠘⠁⠝⠕­⠞⠁⠄⠝⠥</p>

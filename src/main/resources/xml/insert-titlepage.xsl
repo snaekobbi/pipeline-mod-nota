@@ -120,12 +120,12 @@
         <xsl:next-match/>
         <level depth="1"
                class="title_page"
-               style="display:block; text-align:center; page-break-after: always; page-break-inside: avoid; flow: title-page">
+               style="display:block; text-align:center; page-break-before: always; page-break-inside: avoid; flow: title-page">
             <xsl:call-template name="TITLE_PAGE_CONTENT"/>
         </level>
         <level depth="1"
                class="colophon"
-               style="display:block; page-break-after: always; page-break-inside: avoid; flow: colophon">
+               style="display:block; page-break-before: always; page-break-inside: avoid; flow: colophon">
             <xsl:call-template name="COLOPHON_CONTENT"/>
         </level>
     </xsl:template>
@@ -137,12 +137,12 @@
             <xsl:sequence select="@*"/>
             <section xmlns="http://www.w3.org/1999/xhtml"
                      class="title_page"
-                     style="display:block; text-align:center; page-break-after: always; page-break-inside: avoid; flow: titlepage">
+                     style="display:block; text-align:center; page-break-before: always; page-break-inside: avoid; flow: titlepage">
                 <xsl:call-template name="TITLE_PAGE_CONTENT"/>
             </section>
             <section xmlns="http://www.w3.org/1999/xhtml"
                      class="colophon"
-                     style="display:block; page-break-after: always; page-break-inside: avoid; flow: colophon">
+                     style="display:block; page-break-before: always; page-break-inside: avoid; flow: colophon">
                 <xsl:call-template name="COLOPHON_CONTENT"/>
             </section>
             <xsl:apply-templates/>

@@ -35,6 +35,7 @@ $show-braille-page-numbers: true !default;
 #generated-toc::before {
     display: block;
     content: 'indhold';
+    page-break-before: always;
 }
 
 #generated-toc::-obfl-on-volume-start {
@@ -53,14 +54,14 @@ $show-braille-page-numbers: true !default;
 .colophon {
     flow: colophon;
     page: no-footer;
-    page-break-after: always;
+    page-break-before: always;
     text-transform: uncontracted;
 }
 
 .title_page {
     flow: title-page;
     page: no-footer;
-    page-break-after: always;
+    page-break-before: always;
     text-align: center;
     text-transform: uncontracted;
 }
@@ -85,7 +86,7 @@ img {
 
 level[depth="1"], body > section {
     border-bottom: '⠒';
-    page-break-after: always;
+    page-break-before: always;
 }
 
 levelhd, h1, h2, h3, h4, h5, h6 {
