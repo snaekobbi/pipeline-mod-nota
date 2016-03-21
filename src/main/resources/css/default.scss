@@ -55,6 +55,7 @@ $show-braille-page-numbers: true !default;
 }
 
 .colophon {
+    display: block;
     flow: colophon;
     page: no-footer;
     page-break-before: always;
@@ -62,6 +63,7 @@ $show-braille-page-numbers: true !default;
 }
 
 .title_page {
+    display: block;
     flow: title-page;
     page: no-footer;
     page-break-before: always;

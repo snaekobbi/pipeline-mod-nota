@@ -5,8 +5,13 @@
        px:script="true" px:extends="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/dtbook-to-pef.xpl"/>
   <!-- css -->
   <uri name="http://www.nota.dk/pipeline/modules/braille/default.scss" uri="../css/default.scss"/>
+  <!-- internal resources added to the catalog for now until we find a proper solution for
+       https://github.com/daisy/pipeline-mod-braille/pull/79#discussion-diff-54276962 -->
+  <uri name="http://www.nota.dk/pipeline/modules/braille/internal/insert-titlepage.xsl" uri="../xml/insert-titlepage.xsl"/>
   <!-- dependencies -->
+  <nextCatalog catalog="org:daisy:pipeline:modules:file-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:css-utils"/>
+  <nextCatalog catalog="org:daisy:pipeline:modules:braille:pef-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:liblouis-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:liblouis-tables"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:libhyphen-libreoffice-tables"/>

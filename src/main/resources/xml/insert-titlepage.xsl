@@ -51,16 +51,13 @@
     <xsl:template name="TITLE_PAGE_CONTENT">
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
             <xsl:attribute name="class" select="'author'"/>
-            <xsl:attribute name="style" select="'display:block'"/>
             <xsl:value-of select="$AUTHOR"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
             <xsl:attribute name="class" select="'title'"/>
-            <xsl:attribute name="style" select="'display:block'"/>
             <xsl:value-of select="$TITLE"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
-            <xsl:attribute name="style" select="'display:block'"/>
             <xsl:value-of
                 select="if ($contraction-grade eq '0')
                         then 'uforkortet'
@@ -71,7 +68,6 @@
                         else ''"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
-            <xsl:attribute name="style" select="'display:block'"/>
             <xsl:element name="span" namespace="{$OUTPUT_NAMESPACE}">
                 <xsl:attribute name="style" select="'::before { content: -obfl-evaluate(&quot;(round $volume)&quot;); }'"/>
             </xsl:element>
@@ -81,33 +77,27 @@
             </xsl:element>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
-            <xsl:attribute name="style" select="'display:block'"/>
-            nota<br style="::before {{ content:'&#x0A;'; white-space: pre-line }}"/>
-            nationalbibliotek for<br style="::before {{ content:'&#x0A;'; white-space: pre-line }}"/>
-            mennesker med læsevanskeligheder<br style="::before {{ content:'&#x0A;'; white-space: pre-line }}"/>
+            nota<br/>
+            nationalbibliotek for<br/>
+            mennesker med læsevanskeligheder<br/>
             københavn <xsl:value-of select="$YEAR"/>
         </xsl:element>
     </xsl:template>
     
     <xsl:template name="COLOPHON_CONTENT">
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
-            <xsl:attribute name="style" select="'display:block'"/>
             <xsl:value-of select="$TITLE"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
-            <xsl:attribute name="style" select="'display:block'"/>
             <xsl:value-of select="concat('isbn ', $SOURCE_ISBN)"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
-            <xsl:attribute name="style" select="'display:block'"/>
             fejl i punktudgaven kan rapporteres på aub@nota.nu
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
-            <xsl:attribute name="style" select="'display:block'"/>
             <xsl:value-of select="$PID"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
-            <xsl:attribute name="style" select="'display:block'"/>
             <xsl:element name="span" namespace="{$OUTPUT_NAMESPACE}">
                 <xsl:attribute name="style" select="'::before { content: -obfl-evaluate(&quot;(round $volume)&quot;); }'"/>
             </xsl:element>
@@ -118,14 +108,10 @@
     <!-- DTBook template: note lack of proper namespace -->
     <xsl:template match="frontmatter/doctitle">
         <xsl:next-match/>
-        <level depth="1"
-               class="title_page"
-               style="display:block; text-align:center; page-break-before: always; page-break-inside: avoid; flow: title-page">
+        <level depth="1" class="title_page">
             <xsl:call-template name="TITLE_PAGE_CONTENT"/>
         </level>
-        <level depth="1"
-               class="colophon"
-               style="display:block; page-break-before: always; page-break-inside: avoid; flow: colophon">
+        <level depth="1" class="colophon">
             <xsl:call-template name="COLOPHON_CONTENT"/>
         </level>
     </xsl:template>
@@ -135,14 +121,10 @@
     <xsl:template match="html:body">
         <xsl:copy>
             <xsl:sequence select="@*"/>
-            <section xmlns="http://www.w3.org/1999/xhtml"
-                     class="title_page"
-                     style="display:block; text-align:center; page-break-before: always; page-break-inside: avoid; flow: titlepage">
+            <section xmlns="http://www.w3.org/1999/xhtml" class="title_page">
                 <xsl:call-template name="TITLE_PAGE_CONTENT"/>
             </section>
-            <section xmlns="http://www.w3.org/1999/xhtml"
-                     class="colophon"
-                     style="display:block; page-break-before: always; page-break-inside: avoid; flow: colophon">
+            <section xmlns="http://www.w3.org/1999/xhtml" class="colophon">
                 <xsl:call-template name="COLOPHON_CONTENT"/>
             </section>
             <xsl:apply-templates/>

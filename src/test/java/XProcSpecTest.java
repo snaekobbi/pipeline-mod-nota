@@ -50,6 +50,8 @@ public class XProcSpecTest {
 			                                      new File(baseDir, "src/test/xprocspec/test_dtbook-to-pef_tables.xprocspec"),
 			                                      "test_css_translator",
 			                                      new File(baseDir, "src/test/xprocspec/test_css_translator.xprocspec"),
+			                                      "test_insert-titlepage",
+			                                      new File(baseDir, "src/test/xprocspec/test_insert-titlepage.xprocspec"),
 			                                      "test_translator",
 			                                      new File(baseDir, "src/test/xprocspec/test_translator.xprocspec")
 			                                      ),

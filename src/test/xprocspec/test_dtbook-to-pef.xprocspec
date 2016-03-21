@@ -3,7 +3,7 @@
                xmlns:nota="http://www.nota.dk"
                script="http://www.nota.dk/pipeline/modules/braille/dtbook-to-pef.xpl">
   
-  <x:scenario label="generated-content">
+  <x:scenario label="generated-content" xfail="true">  <!-- Steffen will fix CSS -->
     <x:call step="nota:dtbook-to-pef">
       <x:input port="source">
         <x:document type="inline">

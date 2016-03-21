@@ -142,8 +142,7 @@ public interface NotaTranslator {
 			
 			private TransformImpl(int grade, LiblouisTranslator translator, LiblouisTranslator uncontractedTranslator) {
 				Map<String,String> options = ImmutableMap.of(
-					"text-transform", mutableQuery().add("id", this.getIdentifier()).toString(),
-					"contraction-grade", ""+grade);
+					"text-transform", mutableQuery().add("id", this.getIdentifier()).toString());
 				xproc = new XProc(href, null, options);
 				this.grade = grade;
 				this.translator = translator.fromStyledTextToBraille();
