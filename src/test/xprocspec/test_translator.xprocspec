@@ -66,7 +66,7 @@
     <x:call step="pxi:transform">
       <x:input port="source">
         <x:document type="inline">
-          <div xmlns="http://www.w3.org/1999/xhtml" style="hyphens:auto">
+          <div xmlns="http://www.w3.org/1999/xhtml">
             <p style="display:block">
               <em>Sid ned!</em> råbte han.
             </p>
@@ -92,9 +92,9 @@
     <x:context label="result">
       <x:document type="port" port="result"/>
     </x:context>
-    <x:expect label="result" type="compare" pending="not implemented yet">
+    <x:expect label="result" type="compare" pending="not fully implemented yet">
       <x:document type="inline">
-        <div xmlns="http://www.w3.org/1999/xhtml" style="hyphens: manual; text-transform: none">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="text-transform: none">
           <p style="display: block">
             <em>⠰⠎⠊⠙ ⠝⠑⠙⠖⠰</em> ⠗⠡⠃⠞⠑ ⠓⠁⠝⠄
           </p>
@@ -111,6 +111,39 @@
           </p>
           <p style="display: block">
             ⠇⠜⠎ ⠁⠋⠎⠝⠊⠞ ⠨⠁ ⠝⠗⠄ <span class="roman">⠠⠊⠧</span>⠄
+          </p>
+        </div>
+      </x:document>
+    </x:expect>
+  </x:scenario>
+  
+  <x:scenario label="Text-level semantics with spaces">
+    <x:call step="pxi:transform">
+      <x:input port="source">
+        <x:document type="inline">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="text-transform: lowercase">
+            <p style="display:block">
+              <em>Sid ned! </em>råbte han.
+            </p>
+            <p style="display:block">
+              På skiltet stod<strong> STOP </strong>med store bogstaver.
+            </p>
+          </div>
+        </x:document>
+      </x:input>
+      <x:option name="grade" select="0"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="port" port="result"/>
+    </x:context>
+    <x:expect label="result" type="compare">
+      <x:document type="inline">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="text-transform: none">
+          <p style="display: block">
+            <em>⠰⠎⠊⠙ ⠝⠑⠙⠖⠰ </em>⠗⠡⠃⠞⠑ ⠓⠁⠝⠄
+          </p>
+          <p style="display: block">
+            ⠏⠡ ⠎⠅⠊⠇⠞⠑⠞ ⠎⠞⠕⠙<strong> ⠰⠎⠞⠕⠏⠰ </strong>⠍⠑⠙ ⠎⠞⠕⠗⠑ ⠃⠕⠛⠎⠞⠁⠧⠑⠗⠄
           </p>
         </div>
       </x:document>
