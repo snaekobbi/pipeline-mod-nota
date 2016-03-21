@@ -111,7 +111,7 @@
             <volume cols="35" rows="20" rowgap="0" duplex="true">
               <section>
                 <page>
-                  <row>⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
+                  <row>⠀⠀⠀⠀⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
                 </page>
               </section>
             </volume>
@@ -159,7 +159,7 @@
             <volume cols="32" rows="27" rowgap="0" duplex="false">
               <section>
                 <page>
-                  <row>⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
+                  <row>⠀⠀⠀⠀⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
                 </page>
               </section>
             </volume>
@@ -207,7 +207,7 @@
             <volume cols="32" rows="27" rowgap="0" duplex="true">
               <section>
                 <page>
-                  <row>⠎⠊⠍⠏⠇⠑⠀⠳⠵</row>
+                  <row>⠀⠀⠀⠀⠎⠊⠍⠏⠇⠑⠀⠳⠵</row>
                 </page>
               </section>
             </volume>
