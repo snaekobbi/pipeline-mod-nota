@@ -32,22 +32,25 @@ $show-braille-page-numbers: true !default;
     }
 }
 
-#generated-toc::before {
+#generated-volume-toc::before,
+#generated-document-toc::before {
     display: block;
     content: 'indhold';
     page-break-before: always;
 }
 
-#generated-toc::-obfl-on-volume-start {
+#generated-document-toc::-obfl-on-volume-start {
     content: 'bind ' -obfl-evaluate('(round $started-volume-number)');
     display: block;
 }
 
-#generated-toc li {
+#generated-volume-toc li,
+#generated-document-toc li {
     display: block;
 }
 
-#generated-toc li a::after {
+#generated-volume-toc li a::after,
+#generated-document-toc li a::after {
     content: leader('⠀') target-counter(attr(href), page);
 }
 
