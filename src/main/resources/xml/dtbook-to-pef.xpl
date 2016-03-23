@@ -76,9 +76,9 @@
     <p:option name="footnotes-placement"/>
     <p:option name="colophon-metadata-placement"/>
     <p:option name="rear-cover-placement"/>
-    <p:option name="number-of-pages"/>
-    <p:option name="maximum-number-of-pages"/>
-    <p:option name="minimum-number-of-pages"/>
+    <p:option name="number-of-sheets"/>
+    <p:option name="maximum-number-of-sheets"/>
+    <p:option name="minimum-number-of-sheets"/>
     
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl"/>
