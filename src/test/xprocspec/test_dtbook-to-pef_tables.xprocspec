@@ -3,7 +3,7 @@
                xmlns:nota="http://www.nota.dk"
                script="http://www.nota.dk/pipeline/modules/braille/dtbook-to-pef.xpl">
   
-  <x:scenario label="render-table-by" pending="is the second '3' in 'ASIA3 3 K#B' intensional?">
+  <x:scenario label="render-table-by">
     <x:documentation>
       Tests render-table-by.
     </x:documentation>
@@ -40,6 +40,7 @@
                     display: block;
                     margin-bottom: 1;
                   }
+                  th, td { display: inline; }
                   th[axis=area] {
                     table-header-policy: always;
                   }
@@ -109,7 +110,7 @@
     </x:context>
     <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">
-        <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1" xml:lang="da">
+        <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1" xml:lang="da-DK">
           <head>
             <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
               <dc:format>application/x-pef+xml</dc:format>
@@ -143,8 +144,8 @@
                   <row/>
                   <row>⠑⠁⠗⠞⠓⠂⠀⠍⠕⠥⠝⠞⠁⠊⠝⠎</row>
                   <row/>
-                  <row>⠑⠥⠗⠕⠏⠑⠒⠀⠒⠀⠍⠕⠝⠞⠀⠃⠇⠁⠝⠉</row>
-                  <row>⠁⠎⠊⠁⠒⠀⠒⠀⠅⠼⠃</row>
+                  <row>⠑⠥⠗⠕⠏⠑⠒⠀⠍⠕⠝⠞⠀⠃⠇⠁⠝⠉</row>
+                  <row>⠁⠎⠊⠁⠒⠀⠅⠼⠃</row>
                 </page>
                 <page>
                   <row>⠑⠇⠎⠑⠺⠓⠑⠗⠑⠂⠀⠉⠊⠞⠊⠑⠎</row>
@@ -154,7 +155,7 @@
                   <row/>
                   <row>⠑⠇⠎⠑⠺⠓⠑⠗⠑⠂⠀⠍⠕⠥⠝⠞⠁⠊⠝⠎</row>
                   <row/>
-                  <row>⠍⠁⠗⠎⠒⠀⠒⠀⠕⠇⠽⠍⠏⠥⠎⠀⠍⠕⠝⠎</row>
+                  <row>⠍⠁⠗⠎⠒⠀⠕⠇⠽⠍⠏⠥⠎⠀⠍⠕⠝⠎</row>
                 </page>
               </section>
             </volume>
