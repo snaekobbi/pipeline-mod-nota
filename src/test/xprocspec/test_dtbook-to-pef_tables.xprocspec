@@ -90,7 +90,7 @@
                 <tr>
                   <th axis="area">Elsewhere</th>
                   <th axis="sub-area">Mars</th>
-                  <td>None?</td> <td>None?</td>
+                  <td colspan="2">None?</td>
                   <td>Olympus Mons</td>
                 </tr>
               </table>
