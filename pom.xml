@@ -33,6 +33,10 @@
       <groupId>org.daisy.pipeline.modules.braille</groupId>
       <artifactId>libhyphen-core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline.modules.braille</groupId>
+      <artifactId>xml-to-pef</artifactId>
+    </dependency>
     <!--
         runtime dependencies
     -->
@@ -69,6 +73,12 @@
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
       <artifactId>dtbook-to-pef</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline.modules.braille</groupId>
+      <artifactId>epub3-to-pef</artifactId>
+      <scope>runtime</scope>
     </dependency>
     <!--
         test dependencies

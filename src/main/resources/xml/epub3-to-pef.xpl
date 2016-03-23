@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<p:declare-step type="nota:dtbook-to-pef" version="1.0"
+<p:declare-step type="nota:epub3-to-pef" version="1.0"
                 xmlns:nota="http://www.nota.dk"
                 xmlns:p="http://www.w3.org/ns/xproc"
                 xmlns:px="http://www.daisy.org/ns/pipeline/xproc"
+                xmlns:d="http://www.daisy.org/ns/pipeline/data"
                 xmlns:c="http://www.w3.org/ns/xproc-step"
                 xmlns:pef="http://www.daisy.org/ns/2008/pef"
+                xmlns:ocf="urn:oasis:names:tc:opendocument:xmlns:container"
+                xmlns:dc="http://purl.org/dc/elements/1.1/"
+                xmlns:opf="http://www.idpf.org/2007/opf"
                 exclude-inline-prefixes="#all"
                 name="main">
 
     <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-        <h1 px:role="name">DTBook to PEF (Nota)</h1>
-        <p px:role="desc">Transforms a DTBook (DAISY 3 XML) document into a PEF.</p>
+        <h1 px:role="name">EPUB 3 to PEF (Nota)</h1>
+        <p px:role="desc">Transforms a EPUB 3 publication into a PEF.</p>
     </p:documentation>
+
+    <p:option name="epub"/>
     
-    <p:input port="source"/>
-    
-    <!--
-        Documentation and default values of options are defined in xml-to-pef.xpl.
-    -->
     <p:option name="pef-output-dir"/>
     <p:option name="brf-output-dir"/>
     <p:option name="preview-output-dir"/>
@@ -61,9 +62,14 @@
     <p:option name="maximum-number-of-sheets"/>
     <p:option name="minimum-number-of-sheets"/>
     
-    <p:import href="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/library.xpl"/>
+    <!-- ======= -->
+    <!-- Imports -->
+    <!-- ======= -->
+    <p:import href="http://www.daisy.org/pipeline/modules/braille/epub3-to-pef/library.xpl"/>
+    <p:import href="http://www.daisy.org/pipeline/modules/common-utils/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/file-utils/library.xpl"/>
+    <p:import href="http://www.daisy.org/pipeline/modules/fileset-utils/library.xpl"/>
     
     <p:in-scope-names name="in-scope-names"/>
     <p:identity>
@@ -88,33 +94,75 @@
     <px:tempdir name="temp-dir">
         <p:with-option name="href" select="if ($temp-dir!='') then $temp-dir else $pef-output-dir"/>
     </px:tempdir>
+    
+    <!-- =========== -->
+    <!-- LOAD EPUB 3 -->
+    <!-- =========== -->
+    <px:message message="Loading EPUB"/>
+    <px:epub3-to-pef.load name="load">
+        <p:with-option name="epub" select="$epub"/>
+        <p:with-option name="temp-dir" select="concat(string(/c:result),'load/')">
+            <p:pipe step="temp-dir" port="result"/>
+        </p:with-option>
+    </px:epub3-to-pef.load>
+    
+    <!-- Get the OPF so that we can use the metadata in options -->
+    <p:identity>
+        <p:input port="source">
+            <p:pipe port="fileset.out" step="load"/>
+        </p:input>
+    </p:identity>
+    <px:message message="Getting the OPF"/>
+    <px:fileset-load media-types="application/oebps-package+xml">
+        <p:input port="in-memory">
+            <p:pipe port="in-memory.out" step="load"/>
+        </p:input>
+    </px:fileset-load>
+    <p:identity name="opf"/>
     <p:sink/>
     
     <!-- ============= -->
-    <!-- DTBOOK TO PEF -->
+    <!-- EPUB 3 TO PEF -->
     <!-- ============= -->
-    <px:dtbook-to-pef.convert default-stylesheet="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/css/default.css">
+    <p:identity>
         <p:input port="source">
-            <p:pipe step="main" port="source"/>
+            <p:pipe port="fileset.out" step="load"/>
         </p:input>
-        <p:with-option name="temp-dir" select="string(/c:result)">
+    </p:identity>
+    <px:message message="Done loading EPUB, starting conversion to PEF"/>
+    <px:epub3-to-pef.convert default-stylesheet="http://www.daisy.org/pipeline/modules/braille/epub3-to-pef/css/default.css"
+                             apply-document-specific-stylesheets="false" name="convert">
+        <p:input port="in-memory.in">
+            <p:pipe port="in-memory.out" step="load"/>
+        </p:input>
+        <p:with-option name="temp-dir" select="concat(string(/c:result),'convert/')">
             <p:pipe step="temp-dir" port="result"/>
         </p:with-option>
         <p:with-option name="stylesheet" select="string-join((
-                                                   'http://www.nota.dk/pipeline/modules/braille/internal/insert-titlepage.xsl',
-                                                   $stylesheet),' ')"/>
+                                                  'http://www.nota.dk/pipeline/modules/braille/internal/insert-titlepage.xsl',
+                                                  for $s in tokenize($stylesheet,'\s+')[not(.='')]
+                                                    return resolve-uri($s,$epub)),' ')"/>
         <p:with-option name="transform" select="concat('(formatter:dotify)(translator:nota)(grade:',$contraction-grade,')')"/>
         <p:input port="parameters">
             <p:pipe port="result" step="input-options"/>
         </p:input>
-    </px:dtbook-to-pef.convert>
+    </px:epub3-to-pef.convert>
+    <p:sink/>
     
     <!-- ========= -->
     <!-- STORE PEF -->
     <!-- ========= -->
+    <p:identity>
+        <p:input port="source">
+            <p:pipe port="in-memory.out" step="convert"/>
+        </p:input>
+    </p:identity>
+    <px:message message="Storing PEF"/>
+    <p:delete match="/*/@xml:base"/>
     <p:group>
-        <p:variable name="name" select="replace(p:base-uri(/),'^.*/([^/]*)\.[^/\.]*$','$1')">
-            <p:pipe step="main" port="source"/>
+        <p:variable name="name" select="if (ends-with(lower-case($epub),'.epub')) then replace($epub,'^.*/([^/]*)\.[^/\.]*$','$1')
+                                           else (/opf:package/opf:metadata/dc:identifier[not(@refines)], 'unknown-identifier')[1]">
+            <p:pipe step="opf" port="result"/>
         </p:variable>
         <pef:store>
             <p:with-option name="href" select="concat($pef-output-dir,'/',$name,'.pef')"/>
@@ -130,4 +178,3 @@
     </p:group>
     
 </p:declare-step>
-

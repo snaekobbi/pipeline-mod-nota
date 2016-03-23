@@ -1,10 +1,10 @@
 import javax.inject.Inject;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.daisy.maven.xproc.xprocspec.XProcSpecRunner;
-
-import com.google.common.collect.ImmutableMap;
 
 import static org.daisy.pipeline.pax.exam.Options.brailleModule;
 import static org.daisy.pipeline.pax.exam.Options.calabashConfigFile;
@@ -43,18 +43,17 @@ public class XProcSpecTest {
 	@Test
 	public void runXProcSpec() throws Exception {
 		File baseDir = new File(PathUtils.getBaseDir());
-		boolean success = xprocspecRunner.run(ImmutableMap.of(
-			                                      "test_dtbook-to-pef",
-			                                      new File(baseDir, "src/test/xprocspec/test_dtbook-to-pef.xprocspec"),
-			                                      "test_dtbook-to-pef_tables",
-			                                      new File(baseDir, "src/test/xprocspec/test_dtbook-to-pef_tables.xprocspec"),
-			                                      "test_css_translator",
-			                                      new File(baseDir, "src/test/xprocspec/test_css_translator.xprocspec"),
-			                                      "test_insert-titlepage",
-			                                      new File(baseDir, "src/test/xprocspec/test_insert-titlepage.xprocspec"),
-			                                      "test_translator",
-			                                      new File(baseDir, "src/test/xprocspec/test_translator.xprocspec")
-			                                      ),
+		Map<String,File> tests = new HashMap<String,File>();
+		for (String test : new String[]{
+				"test_epub3-to-pef",
+				"test_dtbook-to-pef",
+				"test_dtbook-to-pef_tables",
+				"test_css_translator",
+				"test_insert-titlepage",
+				"test_translator"
+			})
+			tests.put(test, new File(baseDir, "src/test/xprocspec/" + test + ".xprocspec"));
+		boolean success = xprocspecRunner.run(tests,
 		                                      new File(baseDir, "target/xprocspec-reports"),
 		                                      new File(baseDir, "target/surefire-reports"),
 		                                      new File(baseDir, "target/xprocspec"),
@@ -86,6 +85,7 @@ public class XProcSpecTest {
 				brailleModule("pef-utils"),
 				brailleModule("dtbook-to-pef"),
 				brailleModule("html-to-pef"),
+				brailleModule("epub3-to-pef"),
 				// logging
 				logbackClassic(),
 				// xprocspec
