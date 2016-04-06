@@ -22,7 +22,7 @@
     <xsl:variable name="OUTPUT_NAMESPACE" as="xs:string" select="namespace-uri(/*)"/>
     
     <!-- Fetch metadata: not sure how to do this in the EPUB case, as I don't
-        know if/how stuff is copied over; what I would do is copy dc elements
+        know if/how stuff is copied over; what I would do is copy DC elements
         from the OPF file, so I assume this is the case -->
     <xsl:variable name="AUTHOR" as="xs:string*"
         select="/dtbook/head/meta[@name eq 'dc:creator']/@content|
@@ -58,6 +58,7 @@
             <xsl:value-of select="$TITLE"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
+            <xsl:attribute name="class" select="'braille_grade'"/>
             <xsl:value-of
                 select="if ($contraction-grade eq '0')
                         then 'uforkortet'
@@ -68,6 +69,7 @@
                         else ''"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
+            <xsl:attribute name="class" select="'braille_volume'"/>
             <xsl:element name="span" namespace="{$OUTPUT_NAMESPACE}">
                 <xsl:attribute name="style" select="'::before { content: -obfl-evaluate(&quot;(round $volume)&quot;); }'"/>
             </xsl:element>
@@ -77,6 +79,7 @@
             </xsl:element>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
+            <xsl:attribute name="class" select="'braille_imprint'"/>
             nota<br/>
             nationalbibliotek for<br/>
             mennesker med læsevanskeligheder<br/>
@@ -86,18 +89,23 @@
     
     <xsl:template name="COLOPHON_CONTENT">
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
+            <xsl:attribute name="class" select="'braille_title_colophon'"/>
             <xsl:value-of select="$TITLE"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
+            <xsl:attribute name="class" select="'braille_isbn'"/>
             <xsl:value-of select="concat('isbn ', $SOURCE_ISBN)"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
+            <xsl:attribute name="class" select="'braille_report'"/>
             fejl i punktudgaven kan rapporteres på aub@nota.nu
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
+            <xsl:attribute name="class" select="'braille_pid'"/>
             <xsl:value-of select="$PID"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
+            <xsl:attribute name="class" select="'braille_volume_contents'"/>
             <xsl:element name="span" namespace="{$OUTPUT_NAMESPACE}">
                 <xsl:attribute name="style" select="'::before { content: -obfl-evaluate(&quot;(round $volume)&quot;); }'"/>
             </xsl:element>
