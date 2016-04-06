@@ -32,6 +32,7 @@
       <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/generated-content/')"/>
       <x:option name="brf-output-dir" select="concat($temp-dir,'output-dir/generated-content/')"/>
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+      <x:option name="ascii-table" select="'(id:&quot;com_braillo.BrailloTableProvider.TableType.BRAILLO_6DOT_001_00&quot;)'"/>
     </x:call>
     <x:context label="result">
       <x:document type="file" base-uri="temp-dir" method="text" href="output-dir/generated-content/test_dtbook-to-pef.brf"/>
