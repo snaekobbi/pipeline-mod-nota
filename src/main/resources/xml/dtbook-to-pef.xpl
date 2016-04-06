@@ -103,6 +103,7 @@
         <p:with-option name="stylesheet" select="string-join((
                                                    'http://www.nota.dk/pipeline/modules/braille/internal/insert-titlepage.xsl',
                                                    'http://www.nota.dk/pipeline/modules/braille/internal/duplicate-tables.xsl',
+                                                   'http://www.nota.dk/pipeline/modules/braille/internal/mark-noterefs.xsl',
                                                    $stylesheet),' ')"/>
         <p:with-option name="transform" select="concat('(formatter:dotify)(translator:nota)(grade:',$contraction-grade,')')"/>
         <p:input port="parameters">
