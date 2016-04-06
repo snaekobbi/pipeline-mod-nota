@@ -78,9 +78,8 @@ TERES P* AUB^ANOTA'NU
 
 
 
-                              .I
-    SIMPLE TEST
-3333333333333333
+
+    SIMPLE TEST
 
 
 
@@ -105,5 +104,6 @@ TERES P* AUB^ANOTA'NU
 
 
 
-                             P#A
+
+
 
