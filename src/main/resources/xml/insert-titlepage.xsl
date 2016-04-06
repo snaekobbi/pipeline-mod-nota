@@ -50,11 +50,11 @@
     
     <xsl:template name="TITLE_PAGE_CONTENT">
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
-            <xsl:attribute name="class" select="'author'"/>
+            <xsl:attribute name="class" select="'braille_author'"/>
             <xsl:value-of select="$AUTHOR"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
-            <xsl:attribute name="class" select="'title'"/>
+            <xsl:attribute name="class" select="'braille_title'"/>
             <xsl:value-of select="$TITLE"/>
         </xsl:element>
         <xsl:element name="p" namespace="{$OUTPUT_NAMESPACE}">
@@ -108,10 +108,10 @@
     <!-- DTBook template: note lack of proper namespace -->
     <xsl:template match="frontmatter/doctitle">
         <xsl:next-match/>
-        <level depth="1" class="title_page">
+        <level depth="1" class="braille_title_page">
             <xsl:call-template name="TITLE_PAGE_CONTENT"/>
         </level>
-        <level depth="1" class="colophon">
+        <level depth="1" class="braille_colophon">
             <xsl:call-template name="COLOPHON_CONTENT"/>
         </level>
     </xsl:template>
@@ -121,10 +121,10 @@
     <xsl:template match="html:body">
         <xsl:copy>
             <xsl:sequence select="@*"/>
-            <section xmlns="http://www.w3.org/1999/xhtml" class="title_page">
+            <section xmlns="http://www.w3.org/1999/xhtml" class="braille_title_page">
                 <xsl:call-template name="TITLE_PAGE_CONTENT"/>
             </section>
-            <section xmlns="http://www.w3.org/1999/xhtml" class="colophon">
+            <section xmlns="http://www.w3.org/1999/xhtml" class="braille_colophon">
                 <xsl:call-template name="COLOPHON_CONTENT"/>
             </section>
             <xsl:apply-templates/>

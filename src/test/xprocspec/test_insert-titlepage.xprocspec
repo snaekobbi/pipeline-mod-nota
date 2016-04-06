@@ -48,10 +48,10 @@
           <book style="display: block; hyphens: manual">
             <frontmatter style="display: block">
               <doctitle style="display: none">⠞⠊⠞­⠇⠑</doctitle>
-              <level depth="1" class="title_page"
+              <level depth="1" class="braille_title_page"
                      style="{ display: block; flow: title-page; page-break-before: always; text-align: center; text-transform: none } @page { margin-bottom: 0; @bottom-right { content: counter(page); text-align: right; } }">
-                <p class="author" style="display: block"/>
-                <p class="title" style="display: block"/>
+                <p class="braille_author" style="display: block"/>
+                <p class="braille_title" style="display: block"/>
                 <p style="display: block">⠵⠭ ⠋⠭­⠅⠭­⠳⠇⠎⠑</p>
                 <p style="display: block"><span style="::before { content: -obfl-evaluate(&quot;(round $volume)&quot;) }"/>⠄ ⠃⠊⠟ ⠴
                 <span style="::before { content: -obfl-evaluate(&quot;(round $volumes)&quot;) }"/></p>
@@ -64,7 +64,7 @@
                 ⠅⠪­⠃⠣­⠓⠁⠧⠝ ⠼⠃⠚⠁⠋
                 </p>
               </level>
-              <level depth="1" class="colophon"
+              <level depth="1" class="braille_colophon"
                      style="{ display: block; flow: colophon; page-break-before: always; text-transform: none } @page { margin-bottom: 0; @bottom-right { content: counter(page); text-align: right; } }">
                 <p style="display: block"/>
                 <p style="display: block">⠊⠎⠃⠝</p>

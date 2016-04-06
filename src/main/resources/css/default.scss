@@ -54,7 +54,7 @@ $show-braille-page-numbers: true !default;
     content: leader('⠀') target-counter(attr(href), page);
 }
 
-.colophon {
+.braille_colophon {
     display: block;
     flow: colophon;
     page: no-footer;
@@ -62,7 +62,7 @@ $show-braille-page-numbers: true !default;
     text-transform: uncontracted;
 }
 
-.title_page {
+.braille_title_page {
     display: block;
     flow: title-page;
     page: no-footer;
@@ -123,7 +123,7 @@ p {
     text-indent: 2;
 }
 
-p.author {
+p.braille_author {
     margin-top: 4;
 }
 
