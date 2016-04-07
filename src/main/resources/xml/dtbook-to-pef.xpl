@@ -25,8 +25,9 @@
     <p:option name="stylesheet"/>
     <p:option name="contraction-grade"/>
     <p:option name="ascii-table"/>
-    <p:option name="include-preview"/>
     <p:option name="include-brf"/>
+    <p:option name="include-preview"/>
+    <p:option name="include-obfl"/>
     <p:option name="page-width"/>
     <p:option name="page-height"/>
     <p:option name="left-margin"/>
@@ -75,6 +76,7 @@
                                     'ascii-table',
                                     'include-brf',
                                     'include-preview',
+                                    'include-obfl',
                                     'pef-output-dir',
                                     'brf-output-dir',
                                     'preview-output-dir',
@@ -90,10 +92,11 @@
     </px:tempdir>
     <p:sink/>
     
-    <!-- ============= -->
-    <!-- DTBOOK TO PEF -->
-    <!-- ============= -->
-    <px:dtbook-to-pef.convert default-stylesheet="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/css/default.css">
+    <!-- ======= -->
+    <!-- CONVERT -->
+    <!-- ======= -->
+    <px:dtbook-to-pef.convert default-stylesheet="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/css/default.css"
+                              name="convert">
         <p:input port="source">
             <p:pipe step="main" port="source"/>
         </p:input>
@@ -106,30 +109,30 @@
                                                    'http://www.nota.dk/pipeline/modules/braille/internal/mark-noterefs.xsl',
                                                    $stylesheet),' ')"/>
         <p:with-option name="transform" select="concat('(formatter:dotify)(translator:nota)(grade:',$contraction-grade,')')"/>
+        <p:with-option name="include-obfl" select="$include-obfl"/>
         <p:input port="parameters">
             <p:pipe port="result" step="input-options"/>
         </p:input>
     </px:dtbook-to-pef.convert>
     
-    <!-- ========= -->
-    <!-- STORE PEF -->
-    <!-- ========= -->
-    <p:group>
-        <p:variable name="name" select="replace(p:base-uri(/),'^.*/([^/]*)\.[^/\.]*$','$1')">
+    <!-- ===== -->
+    <!-- STORE -->
+    <!-- ===== -->
+    <px:dtbook-to-pef.store>
+        <p:input port="obfl">
+            <p:pipe step="convert" port="obfl"/>
+        </p:input>
+        <p:with-option name="name" select="replace(p:base-uri(/),'^.*/([^/]*)\.[^/\.]*$','$1')">
             <p:pipe step="main" port="source"/>
-        </p:variable>
-        <pef:store>
-            <p:with-option name="href" select="concat($pef-output-dir,'/',$name,'.pef')"/>
-            <p:with-option name="preview-href" select="if ($include-preview='true' and $preview-output-dir!='')
-                                                       then concat($preview-output-dir,'/',$name,'.pef.html')
-                                                       else ''"/>
-            <p:with-option name="brf-href" select="if ($include-brf='true' and $brf-output-dir!='')
-                                                   then concat($brf-output-dir,'/',$name,'.brf')
-                                                   else ''"/>
-            <p:with-option name="brf-table" select="if ($ascii-table!='') then $ascii-table
-                                                    else concat('(locale:',(/*/@xml:lang,'und')[1],')')"/>
-        </pef:store>
-    </p:group>
+        </p:with-option>
+        <p:with-option name="include-brf" select="$include-brf"/>
+        <p:with-option name="include-preview" select="$include-preview"/>
+        <p:with-option name="include-obfl" select="$include-obfl"/>
+        <p:with-option name="ascii-table" select="$ascii-table"/>
+        <p:with-option name="pef-output-dir" select="$pef-output-dir"/>
+        <p:with-option name="brf-output-dir" select="$brf-output-dir"/>
+        <p:with-option name="preview-output-dir" select="$preview-output-dir"/>
+    </px:dtbook-to-pef.store>
     
 </p:declare-step>
 
