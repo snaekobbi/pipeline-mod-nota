@@ -309,7 +309,7 @@
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
     </x:call>
     <x:context label="result">
-      <x:document type="file" base-uri="temp-dir" method="xml" href="output-dir/w-in-generated-content/w-in-generated-content.pef"/>
+      <x:document type="file" base-uri="temp-dir" href="output-dir/w-in-generated-content/w-in-generated-content.pef"/>
     </x:context>
     <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">
