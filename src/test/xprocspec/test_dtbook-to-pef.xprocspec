@@ -292,7 +292,7 @@
               <meta name="dc:title" content="Whitmans bedste"/>
               <meta name="dc:creator" content="Walt Whitman"/>
             </head>
-            <book>
+            <book style="@page{ size: 25 40; }">
               <frontmatter>
                 <doctitle>Whitmans bedste</doctitle>
                 <docauthor>Walt Whitman</docauthor>
@@ -331,9 +331,9 @@
                   <row/>
                   <row/>
                   <row/>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠨⠺⠁⠇⠞⠀⠨⠺⠓⠊⠞⠍⠁⠝</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⠁⠇⠞⠀⠺⠓⠊⠞⠍⠁⠝</row>
                   <row/>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠨⠺⠓⠊⠞⠍⠁⠝⠎⠀⠃⠑⠙⠎⠞⠑</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⠓⠊⠞⠍⠁⠝⠎⠀⠃⠑⠙⠎⠞⠑</row>
                   <row/>
                   <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠥⠋⠕⠗⠅⠕⠗⠞⠑⠞</row>
                   <row/>
@@ -354,7 +354,7 @@
                   <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
                 </page>
                 <page>
-                  <row>⠀⠀⠨⠺⠓⠊⠞⠍⠁⠝⠎⠀⠃⠑⠙⠎⠞⠑</row>
+                  <row>⠀⠀⠺⠓⠊⠞⠍⠁⠝⠎⠀⠃⠑⠙⠎⠞⠑</row>
                   <row/>
                   <row>⠀⠀⠊⠎⠃⠝</row>
                   <row/>
