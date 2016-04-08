@@ -27,9 +27,10 @@
 		</p:documentation>
 	</p:option>
 	
-	<p:option name="ascii-table" select="'(locale:da)'"/>
+	<p:option name="ascii-table" select="'(id:&quot;com_braillo.BrailloTableProvider.TableType.BRAILLO_6DOT_001_00&quot;)'"/>
 	<p:option name="include-preview" select="'false'"/>
 	<p:option name="include-brf" select="'false'"/>
+	<p:option name="include-obfl" required="false" px:type="boolean" select="'false'"/>
 	
 	<p:option name="page-width" select="32"/>
 	<p:option name="page-height" select="27"/>

@@ -47,6 +47,7 @@ public class XProcSpecTest {
 		for (String test : new String[]{
 				"test_epub3-to-pef",
 				"test_dtbook-to-pef",
+				"test_dtbook-to-pef_notes",
 				"test_dtbook-to-pef_tables",
 				"test_css_translator",
 				"test_insert-titlepage",
