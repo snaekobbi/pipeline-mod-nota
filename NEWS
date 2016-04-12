@@ -1,3 +1,19 @@
+pipeline-mod-nota v1.2.0
+========================
+
+Includes
+--------
+- Nota-specific DTBook to PEF and EPUB3 to PEF scripts with:
+  - Nota-specific default CSS style sheet
+  - automatic insertion of title pages and colophons
+  - special handling of tables with class `render_by_both` (duplicated)
+  - special handling of noterefs (get the same class as the
+    corresponding notes)
+  - special handling of foreign languages (translated with no
+    contractions)
+  - a default ASCII-table compatible with other braille tools used at Nota
+- Fixed handling of text-level semantics (`strong` and `em`)
+
 pipeline-mod-nota v1.1.0
 =======================
 Compatibility update
