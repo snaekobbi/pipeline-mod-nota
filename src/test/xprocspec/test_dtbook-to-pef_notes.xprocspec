@@ -7,7 +7,8 @@
       TODO: Steffen: please tweak the CSS, move it to the default style sheet and verify the test
       result.
   -->
-  <x:scenario label="footnotes-and-endnotes">
+  <x:scenario label="footnotes-and-endnotes" pending="FIXME: CSS formatting changed
+                                                      verify expected result">
     <x:call step="nota:dtbook-to-pef">
       <x:input port="source">
         <x:document type="inline">

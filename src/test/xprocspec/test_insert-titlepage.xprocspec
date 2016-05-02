@@ -14,7 +14,10 @@
       <p:import href="http://www.daisy.org/pipeline/modules/braille/xml-to-pef/library.xpl"/>
       <px:apply-stylesheets stylesheets="http://www.nota.dk/pipeline/modules/braille/internal/insert-titlepage.xsl
                                          http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/css/default.css
-                                         http://www.nota.dk/pipeline/modules/braille/default.scss"/>
+                                         http://www.nota.dk/pipeline/modules/braille/default.scss">
+        <p:with-param port="parameters" name="capital-letters" select="true()"/>
+        <p:with-param port="parameters" name="show-braille-page-numbers" select="false()"/>
+      </px:apply-stylesheets>
       <px:transform query="(input:css)(input:html)(output:css)(translator:nota)(locale:da)(grade:2)"/>
     </p:declare-step>
   </x:script>
