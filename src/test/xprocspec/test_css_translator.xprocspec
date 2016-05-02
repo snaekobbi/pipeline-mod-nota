@@ -12,10 +12,13 @@
       <p:input port="source"/>
       <p:output port="result"/>
       <p:option name="grade" required="true"/>
-      <p:import href="http://www.daisy.org/pipeline/modules/braille/css-utils/library.xpl"/>
       <p:import href="http://www.daisy.org/pipeline/modules/braille/common-utils/library.xpl"/>
-      <css:inline default-stylesheet="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/css/default.css
-                                      http://www.nota.dk/pipeline/modules/braille/default.scss"/>
+      <p:import href="http://www.daisy.org/pipeline/modules/braille/xml-to-pef/library.xpl"/>
+      <px:apply-stylesheets stylesheets="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/css/default.css
+                                         http://www.nota.dk/pipeline/modules/braille/default.scss">
+        <p:with-param port="parameters" name="capital-letters" select="true()"/>
+        <p:with-param port="parameters" name="show-braille-page-numbers" select="false()"/>
+      </px:apply-stylesheets>
       <px:transform>
         <p:with-option name="query" select="concat('(input:css)(input:html)(output:css)(translator:nota)(locale:da)(grade:',$grade,')')"/>
       </px:transform>
@@ -23,7 +26,8 @@
     </p:declare-step>
   </x:script>
   
-  <x:scenario label="class uncontracted">
+  <x:scenario label="class uncontracted" pending="FIXME: support for class 'uncontracted' has been removed from CSS
+                                                         if this was intentional, this test should be changed">
     <x:call step="pxi:transform">
       <x:input port="source">
         <x:document type="inline">

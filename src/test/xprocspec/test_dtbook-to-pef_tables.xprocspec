@@ -38,6 +38,7 @@
                   }
                   table caption {
                     display: block;
+                    margin-top: 0;
                     margin-bottom: 1;
                   }
                   th, td { display: inline; }
@@ -343,8 +344,6 @@
                   <row>⠉⠕⠇⠥⠍⠝⠀⠼⠑⠒⠀⠗⠕⠺⠀⠼⠁⠒⠀⠉⠑⠇⠇⠀⠼⠁⠄⠑⠆</row>
                   <row>⠀⠀⠗⠕⠺⠀⠼⠃⠒⠀⠉⠑⠇⠇⠀⠼⠃⠄⠑⠆⠀⠗⠕⠺⠀⠼⠉⠒</row>
                   <row>⠀⠀⠉⠑⠇⠇⠀⠼⠉⠄⠑⠆⠀⠗⠕⠺⠀⠼⠙⠒⠀⠉⠑⠇⠇⠀⠼⠙⠄⠑⠆</row>
-                </page>
-                <page>
                   <row>⠀⠀⠗⠕⠺⠀⠼⠑⠒⠀⠉⠑⠇⠇⠀⠼⠑⠄⠑</row>
                 </page>
               </section>
