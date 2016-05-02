@@ -4,8 +4,8 @@
                script="http://www.nota.dk/pipeline/modules/braille/dtbook-to-pef.xpl">
   
   <!--
-      TODO: Steffen: please tweak the CSS, move it to the default style sheet and verify the test
-      result.
+      TODO: Steffen: please remove the CSS (so that the default style sheet is used) and update the
+      expected test result.
   -->
   <x:scenario label="footnotes-and-endnotes" pending="FIXME: CSS formatting changed
                                                       verify expected result">

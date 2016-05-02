@@ -67,4 +67,24 @@
     </x:expect>
   </x:scenario>
   
+  <x:scenario label="footnotes-and-endnotes" pending="FIXME: expected result?">
+    <x:call step="nota:epub3-to-pef">
+      <x:option name="epub" select="resolve-uri('../resources/notes.epub/package.opf')"/>
+      <x:option name="show-braille-page-numbers" select="false()"/>
+      <x:option name="contraction-grade" select="0"/>
+      <x:option name="include-brf" select="true()"/>
+      <x:option name="pef-output-dir" select="resolve-uri('footnotes-and-endnotes/output-dir',$temp-dir)"/>
+      <x:option name="brf-output-dir" select="resolve-uri('footnotes-and-endnotes/output-dir',$temp-dir)"/>
+      <x:option name="temp-dir" select="resolve-uri('footnotes-and-endnotes/temp-dir',$temp-dir)"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="footnotes-and-endnotes/output-dir/123456.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="inline">
+        <pef/>
+      </x:document>
+    </x:expect>
+  </x:scenario>
+  
 </x:description>
