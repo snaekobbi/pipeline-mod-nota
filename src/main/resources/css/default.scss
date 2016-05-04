@@ -75,7 +75,7 @@
 .braille_title_page {
     border-bottom: none;
     flow: title-page;
-    page-break-after: always;
+    page-break-before: always;
     text-align: center;
     text-transform: uncontracted;
 }
@@ -102,7 +102,7 @@ p.braille_imprint {
 .braille_colophon {
     border-bottom: none;
     flow: colophon;
-    page-break-after: always;
+    page-break-before: always;
 }
 
 .braille_colophon p {
@@ -152,8 +152,8 @@ p.braille_pid {
 
 /* SECTIONING ELEMENTS */
 
-frontmatter {
-    page-break-after: right;
+bodymatter, rearmatter {
+    page-break-before: right;
 }
 
 level[depth="1"], level1, body {
