@@ -3,7 +3,7 @@
                xmlns:nota="http://www.nota.dk"
                script="http://www.nota.dk/pipeline/modules/braille/dtbook-to-pef.xpl">
   
-  <x:scenario label="generated-content" xfail="true">  <!-- Steffen will fix CSS -->
+  <x:scenario label="generated-content" xfail="true">
     <x:call step="nota:dtbook-to-pef">
       <x:input port="source">
         <x:document type="inline">
@@ -34,6 +34,8 @@
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
       <x:option name="ascii-table" select="'(page-breaks:&quot;---&quot;)
                                             (id:&quot;com_braillo.BrailloTableProvider.TableType.BRAILLO_6DOT_001_00&quot;)'"/>
+      <x:option name="page-width" select="32"/>
+      <x:option name="page-height" select="27"/>
     </x:call>
     <x:context label="result">
       <x:document type="file" base-uri="temp-dir" method="text" href="output-dir/generated-content/test_dtbook-to-pef.brf"/>
@@ -43,8 +45,7 @@
     </x:expect>
   </x:scenario>
   
-  <x:scenario label="page-size" pending="FIXME: CSS formatting changed
-                                                verify expected result">
+  <x:scenario label="page-size">
     <x:call step="nota:dtbook-to-pef">
       <x:input port="source">
         <x:document type="inline">
@@ -73,17 +74,22 @@
     </x:context>
     <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">
-        <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1" xml:lang="da">
+        <pef xmlns="http://www.daisy.org/ns/2008/pef" xml:lang="da" version="2008-1">
           <head>
             <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
               <dc:format>application/x-pef+xml</dc:format>
+              <dc:identifier>identifier?</dc:identifier>
+              <dc:date>2016-05-03</dc:date>
             </meta>
           </head>
           <body>
             <volume cols="35" rows="20" rowgap="0" duplex="true">
               <section>
                 <page>
+                  <row/>
                   <row>⠀⠀⠀⠀⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
+                  <row/>
+                  <row>⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
                 </page>
               </section>
             </volume>
@@ -93,8 +99,7 @@
     </x:expect>
   </x:scenario>
   
-  <x:scenario label="duplex" pending="FIXME: CSS formatting changed
-                                             verify expected result">
+  <x:scenario label="duplex">
     <x:call step="nota:dtbook-to-pef">
       <x:input port="source">
         <x:document type="inline">
@@ -122,17 +127,22 @@
     </x:context>
     <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">
-        <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1" xml:lang="da">
+        <pef xmlns="http://www.daisy.org/ns/2008/pef" xml:lang="da" version="2008-1">
           <head>
             <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
               <dc:format>application/x-pef+xml</dc:format>
+              <dc:identifier>identifier?</dc:identifier>
+              <dc:date>2016-05-03</dc:date>
             </meta>
           </head>
           <body>
-            <volume cols="32" rows="27" rowgap="0" duplex="false">
+            <volume cols="40" rows="25" rowgap="0" duplex="false">
               <section>
                 <page>
+                  <row/>
                   <row>⠀⠀⠀⠀⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
+                  <row/>
+                  <row>⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
                 </page>
               </section>
             </volume>
@@ -142,8 +152,7 @@
     </x:expect>
   </x:scenario>
   
-  <x:scenario label="contraction-grade" pending="FIXME: CSS formatting changed
-                                                        verify expected result">
+  <x:scenario label="contraction-grade">
     <x:call step="nota:dtbook-to-pef">
       <x:input port="source">
         <x:document type="inline">
@@ -171,17 +180,22 @@
     </x:context>
     <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">
-        <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1" xml:lang="da">
+        <pef xmlns="http://www.daisy.org/ns/2008/pef" xml:lang="da" version="2008-1">
           <head>
             <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
               <dc:format>application/x-pef+xml</dc:format>
+              <dc:identifier>identifier?</dc:identifier>
+              <dc:date>2016-05-03</dc:date>
             </meta>
           </head>
           <body>
-            <volume cols="32" rows="27" rowgap="0" duplex="true">
+            <volume cols="40" rows="25" rowgap="0" duplex="true">
               <section>
                 <page>
+                  <row/>
                   <row>⠀⠀⠀⠀⠎⠊⠍⠏⠇⠑⠀⠳⠵</row>
+                  <row/>
+                  <row>⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
                 </page>
               </section>
             </volume>
@@ -191,8 +205,7 @@
     </x:expect>
   </x:scenario>
   
-  <x:scenario label="capital-letters" pending="FIXME: CSS formatting changed
-                                                      verify expected result">
+  <x:scenario label="capital-letters">
     <x:call step="nota:dtbook-to-pef">
       <x:input port="source">
         <x:document type="inline">
@@ -219,17 +232,22 @@
       </x:context>
       <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
         <x:document type="inline">
-          <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1" xml:lang="da">
+          <pef xmlns="http://www.daisy.org/ns/2008/pef" xml:lang="da" version="2008-1">
             <head>
               <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
                 <dc:format>application/x-pef+xml</dc:format>
+                <dc:identifier>identifier?</dc:identifier>
+                <dc:date>2016-05-03</dc:date>
               </meta>
             </head>
             <body>
-              <volume cols="32" rows="27" rowgap="0" duplex="true">
+              <volume cols="40" rows="25" rowgap="0" duplex="true">
                 <section>
                   <page>
+                    <row/>
                     <row>⠀⠀⠀⠀⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
+                    <row/>
+                    <row>⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
                   </page>
                 </section>
               </volume>
@@ -249,17 +267,22 @@
       </x:context>
       <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
         <x:document type="inline">
-          <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1" xml:lang="da">
+          <pef xmlns="http://www.daisy.org/ns/2008/pef" xml:lang="da" version="2008-1">
             <head>
               <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
                 <dc:format>application/x-pef+xml</dc:format>
+                <dc:identifier>identifier?</dc:identifier>
+                <dc:date>2016-05-03</dc:date>
               </meta>
             </head>
             <body>
-              <volume cols="32" rows="27" rowgap="0" duplex="true">
+              <volume cols="40" rows="25" rowgap="0" duplex="true">
                 <section>
                   <page>
+                    <row/>
                     <row>⠀⠀⠀⠀⠨⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
+                    <row/>
+                    <row>⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
                   </page>
                 </section>
               </volume>
@@ -270,7 +293,7 @@
     </x:scenario>
   </x:scenario>
   
-  <x:scenario label="various-css" pending="TODO: fix css and also fix expected output">
+  <x:scenario label="various-css"> <!-- Note from Steffen: Changed test input to lists only -->
     <x:call step="nota:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/nota_braille_test.xml"/>
@@ -278,6 +301,7 @@
       <x:option name="contraction-grade" select="0"/>
       <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/various-css/')"/>
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+      <x:option name="show-braille-page-numbers" select="false()"/>
     </x:call>
     <x:context label="result">
       <x:document type="file" base-uri="temp-dir" href="output-dir/various-css/nota_braille_test.pef"/>
@@ -287,8 +311,7 @@
     </x:expect>
   </x:scenario>
   
-  <x:scenario label="capitals in title and author" pending="FIXME: CSS formatting changed
-                                                                   verify expected result">
+  <x:scenario label="capitals in title and author">
     <x:call step="nota:dtbook-to-pef">
       <x:input port="source">
         <x:document type="inline">
@@ -310,8 +333,8 @@
         </x:document>
       </x:input>
       <x:option name="contraction-grade" select="0"/>
-      <x:option name="page-width" select="40"/>
-      <x:option name="page-height" select="25"/>
+      <x:option name="page-width" select="32"/>
+      <x:option name="page-height" select="27"/>
       <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/capitals-in-title/')"/>
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
     </x:call>
@@ -324,30 +347,23 @@
           <head>
             <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
               <dc:format>application/x-pef+xml</dc:format>
+              <dc:identifier>identifier?</dc:identifier>
+              <dc:date>2016-05-03</dc:date>
               <dc:title>Whitmans bedste</dc:title>
               <dc:creator>Walt Whitman</dc:creator>
             </meta>
           </head>
           <body>
-            <volume cols="40" rows="25" rowgap="0" duplex="true">
+            <volume cols="32" rows="27" rowgap="0" duplex="true">
               <section>
                 <page>
                   <row/>
                   <row/>
                   <row/>
                   <row/>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⠁⠇⠞⠀⠺⠓⠊⠞⠍⠁⠝</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⠁⠇⠞⠀⠺⠓⠊⠞⠍⠁⠝</row>
                   <row/>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⠓⠊⠞⠍⠁⠝⠎⠀⠃⠑⠙⠎⠞⠑</row>
-                  <row/>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠥⠋⠕⠗⠅⠕⠗⠞⠑⠞</row>
-                  <row/>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁⠄⠀⠃⠊⠝⠙⠀⠁⠋⠀⠼⠁</row>
-                  <row/>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠝⠕⠞⠁</row>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠝⠁⠞⠊⠕⠝⠁⠇⠃⠊⠃⠇⠊⠕⠞⠑⠅⠀⠋⠕⠗</row>
-                  <row>⠀⠀⠀⠀⠍⠑⠝⠝⠑⠎⠅⠑⠗⠀⠍⠑⠙⠀⠇⠜⠎⠑⠧⠁⠝⠎⠅⠑⠇⠊⠛⠓⠑⠙⠑⠗</row>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠅⠪⠃⠑⠝⠓⠁⠧⠝⠀⠼⠃⠚⠁⠋</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠺⠓⠊⠞⠍⠁⠝⠎⠀⠃⠑⠙⠎⠞⠑</row>
                   <row/>
                   <row/>
                   <row/>
@@ -356,17 +372,26 @@
                   <row/>
                   <row/>
                   <row/>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
+                  <row/>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠥⠋⠕⠗⠅⠕⠗⠞⠑⠞</row>
+                  <row/>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁⠄⠀⠃⠊⠝⠙⠀⠁⠋⠀⠼⠁</row>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠝⠕⠞⠁</row>
+                  <row>⠀⠀⠀⠀⠀⠝⠁⠞⠊⠕⠝⠁⠇⠃⠊⠃⠇⠊⠕⠞⠑⠅⠀⠋⠕⠗</row>
+                  <row>⠍⠑⠝⠝⠑⠎⠅⠑⠗⠀⠍⠑⠙⠀⠇⠜⠎⠑⠧⠁⠝⠎⠅⠑⠇⠊⠛⠓⠑⠙⠑⠗</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠅⠪⠃⠑⠝⠓⠁⠧⠝⠀⠼⠃⠚⠁⠋</row>
                 </page>
                 <page>
-                  <row>⠀⠀⠺⠓⠊⠞⠍⠁⠝⠎⠀⠃⠑⠙⠎⠞⠑</row>
+                  <row>⠺⠓⠊⠞⠍⠁⠝⠎⠀⠃⠑⠙⠎⠞⠑</row>
                   <row/>
-                  <row>⠀⠀⠊⠎⠃⠝</row>
+                  <row>⠊⠎⠃⠝</row>
                   <row/>
-                  <row>⠀⠀⠋⠑⠚⠇⠀⠊⠀⠏⠥⠝⠅⠞⠥⠙⠛⠁⠧⠑⠝⠀⠅⠁⠝⠀⠗⠁⠏⠏⠕⠗⠞⠑⠗⠑⠎⠀⠏⠡</row>
-                  <row>⠁⠥⠃⠘⠁⠝⠕⠞⠁⠄⠝⠥</row>
-                  <row/>
-                  <row>⠀⠀⠼⠁⠄⠀⠏⠥⠝⠅⠞⠃⠊⠝⠙⠒⠀⠤</row>
+                  <row>⠋⠑⠚⠇⠀⠊⠀⠏⠥⠝⠅⠞⠥⠙⠛⠁⠧⠑⠝⠀⠅⠁⠝⠀⠗⠁⠏⠏⠕⠗⠤</row>
+                  <row>⠞⠑⠗⠑⠎⠀⠏⠡⠀⠁⠥⠃⠘⠁⠝⠕⠞⠁⠄⠝⠥</row>
                   <row/>
                   <row/>
                   <row/>
@@ -383,12 +408,18 @@
                   <row/>
                   <row/>
                   <row/>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠃</row>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row>⠼⠁⠄⠀⠏⠥⠝⠅⠞⠃⠊⠝⠙⠒⠀⠤</row>
+                </page>
+                <page>
                 </page>
               </section>
               <section>
                 <page>
-                  <row>⠀⠀⠺⠓⠊⠞⠍⠁⠝⠎⠀⠃⠑⠙⠎⠞⠑⠀⠁⠋⠀⠺⠁⠇⠞⠀⠺⠓⠊⠞⠍⠁⠝</row>
+                  <row>⠺⠓⠊⠞⠍⠁⠝⠎⠀⠃⠑⠙⠎⠞⠑⠀⠁⠋⠀⠺⠁⠇⠞⠀⠺⠓⠊⠞⠍⠁⠝</row>
+                  <row>⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
                   <row/>
                   <row/>
                   <row/>
@@ -412,7 +443,8 @@
                   <row/>
                   <row/>
                   <row/>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
+                  <row/>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
                 </page>
               </section>
             </volume>

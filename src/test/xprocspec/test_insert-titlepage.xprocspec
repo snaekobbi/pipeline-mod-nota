@@ -33,7 +33,7 @@
               </frontmatter>
               <bodymatter>
                 <level1>
-                  <h1 style="display:block">body</h1>
+                  <h1>body</h1>
                 </level1>
               </bodymatter>
             </book>
