@@ -3,43 +3,11 @@
                xmlns:nota="http://www.nota.dk"
                script="http://www.nota.dk/pipeline/modules/braille/dtbook-to-pef.xpl">
   
-  <!--
-      TODO: Steffen: please remove the CSS (so that the default style sheet is used) and update the
-      expected test result.
-  -->
-  <x:scenario label="footnotes-and-endnotes" pending="FIXME: CSS formatting changed
-                                                      verify expected result">
+  <x:scenario label="footnotes-and-endnotes">
     <x:call step="nota:dtbook-to-pef">
       <x:input port="source">
         <x:document type="inline">
           <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="da-DK">
-            <head>
-              <style type="text/css" media="embossed">
-                @page {
-                  @footnotes {
-                    content: flow(footnotes);
-                  }
-                }
-                @volume {
-                  @end {
-                    content: flow(endnotes);
-                  }
-                }
-                noteref::alternate {
-                  display: block;
-                  content: target-content(attr(idref));
-                }
-                noteref.footnote::alternate {
-                  flow: footnotes;
-                }
-                noteref.endnote::alternate {
-                  flow: endnotes;
-                }
-                note {
-                  display: none;
-                }
-              </style>
-            </head>
             <book>
               <p>
                 This is a reference to a footnote<noteref idref="foot_1">*</noteref>.
@@ -57,6 +25,8 @@
           </dtbook>
         </x:document>
       </x:input>
+      <x:option name="page-width" select="40"/>
+      <x:option name="page-height" select="25"/>
       <x:option name="show-braille-page-numbers" select="false()"/>
       <x:option name="contraction-grade" select="0"/>
       <x:option name="include-brf" select="true()"/>
@@ -76,15 +46,13 @@
             </meta>
           </head>
           <body>
-            <volume cols="32" rows="27" rowgap="0" duplex="true">
+            <volume cols="40" rows="25" rowgap="0" duplex="true">
               <section>
                 <page>
-                  <row>⠀⠀⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠗⠑⠋⠑⠗⠑⠝⠉⠑⠀⠞⠕⠀⠁⠀⠋⠕⠕⠞⠤</row>
-                  <row>⠝⠕⠞⠑⠠⠔⠄</row>
-                  <row/>
-                  <row>⠀⠀⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠗⠑⠋⠑⠗⠑⠝⠉⠑⠀⠞⠕⠀⠁⠝⠀⠑⠝⠙⠤</row>
-                  <row>⠝⠕⠞⠑⠼⠁⠄</row>
-                  <row/>
+                  <row>⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠗⠑⠋⠑⠗⠑⠝⠉⠑⠀⠞⠕⠀⠁⠀⠋⠕⠕⠞⠝⠕⠞⠑⠦⠦⠝⠕⠞⠑⠀</row>
+                  <row>⠠⠔⠴⠴⠄</row>
+                  <row>⠀⠀⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠗⠑⠋⠑⠗⠑⠝⠉⠑⠀⠞⠕⠀⠁⠝⠀⠑⠝⠙⠝⠕⠞⠑⠦⠦⠝⠕⠤</row>
+                  <row>⠞⠑⠀⠼⠁⠴⠴⠄</row>
                   <row/>
                   <row/>
                   <row/>
@@ -103,12 +71,13 @@
                   <row/>
                   <row/>
                   <row/>
-                  <row>⠀⠀⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠋⠕⠕⠞⠝⠕⠞⠑</row>
+                  <row/>
+                  <row>⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠋⠕⠕⠞⠝⠕⠞⠑</row>
                 </page>
               </section>
               <section>
                 <page>
-                  <row>⠀⠀⠞⠓⠊⠎⠀⠊⠎⠀⠁⠝⠀⠑⠝⠙⠝⠕⠞⠑</row>
+                  <row>⠞⠓⠊⠎⠀⠊⠎⠀⠁⠝⠀⠑⠝⠙⠝⠕⠞⠑</row>
                 </page>
               </section>
             </volume>

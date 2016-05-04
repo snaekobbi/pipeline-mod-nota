@@ -2,9 +2,9 @@
 
 
 
-
-
              TITLE
+
+
 
 
 
@@ -16,7 +16,7 @@
 
            UFORKORTET
 
-      #A' PUNKTBIND AF #A
+         #A' BIND AF #A
 
 
 
@@ -27,6 +27,8 @@ MENNESKER MED L>SEVANSKELIGHEDER
         K[BENHAVN #BJAF
 ---
 TITLE
+
+ISBN
 
 FEJL I PUNKTUDGAVEN KAN RAPPOR-
 TERES P* AUB^ANOTA'NU
@@ -49,41 +51,13 @@ TERES P* AUB^ANOTA'NU
 
 
 
-
-
 #JJJJJJ
-#A' PUNKTBIND .I-_II #A-#A
+#A' PUNKTBIND3 -
 ---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
     SIMPLE TEST
 
+33333333333333333333333333333333
 
 
 
@@ -106,7 +80,5 @@ TERES P* AUB^ANOTA'NU
 
 
 
-
-
-
+                                
 ---
