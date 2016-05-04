@@ -26,8 +26,7 @@
     </p:declare-step>
   </x:script>
   
-  <x:scenario label="class uncontracted" pending="FIXME: support for class 'uncontracted' has been removed from CSS
-                                                         if this was intentional, this test should be changed">
+  <x:scenario label="class uncontracted">
     <x:call step="pxi:transform">
       <x:input port="source">
         <x:document type="inline">
