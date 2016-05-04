@@ -3,11 +3,8 @@
                xmlns:nota="http://www.nota.dk"
                script="http://www.nota.dk/pipeline/modules/braille/epub3-to-pef.xpl">
   
-  <!--
-      TODO: Steffen please verify this result
-  -->
-  <x:scenario label="basic" pending="FIXME: CSS formatting changed
-                                            verify expected result">
+
+  <x:scenario label="basic">
     <x:call step="nota:epub3-to-pef">
       <x:option name="epub" select="resolve-uri('../resources/basic.epub/package.opf')"/>
       <x:option name="show-braille-page-numbers" select="false()"/>
@@ -23,6 +20,8 @@
           <head>
             <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
               <dc:format>application/x-pef+xml</dc:format>
+              <dc:identifier>identifier?</dc:identifier>
+              <dc:date>2016-05-03</dc:date>
               <dc:title>title</dc:title>
               <dc:creator>nota</dc:creator>
               <dc:language>da</dc:language>
@@ -30,34 +29,74 @@
             </meta>
           </head>
           <body>
-            <volume cols="32" rows="27" rowgap="0" duplex="true">
+            <volume cols="40" rows="25" rowgap="0" duplex="true">
               <section>
                 <page>
                   <row/>
                   <row/>
                   <row/>
                   <row/>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠥⠋⠕⠗⠅⠕⠗⠞⠑⠞</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠝⠕⠞⠁</row>
                   <row/>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁⠄⠀⠃⠊⠝⠙⠀⠁⠋⠀⠼⠁</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠞⠊⠞⠇⠑</row>
                   <row/>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠝⠕⠞⠁</row>
-                  <row>⠀⠀⠀⠀⠀⠝⠁⠞⠊⠕⠝⠁⠇⠃⠊⠃⠇⠊⠕⠞⠑⠅⠀⠋⠕⠗</row>
-                  <row>⠍⠑⠝⠝⠑⠎⠅⠑⠗⠀⠍⠑⠙⠀⠇⠜⠎⠑⠧⠁⠝⠎⠅⠑⠇⠊⠛⠓⠑⠙⠑⠗</row>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠅⠪⠃⠑⠝⠓⠁⠧⠝⠀⠼⠃⠚⠁⠋</row>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠥⠋⠕⠗⠅⠕⠗⠞⠑⠞</row>
+                  <row/>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁⠄⠀⠃⠊⠝⠙⠀⠁⠋⠀⠼⠁</row>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠝⠕⠞⠁</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠝⠁⠞⠊⠕⠝⠁⠇⠃⠊⠃⠇⠊⠕⠞⠑⠅⠀⠋⠕⠗</row>
+                  <row>⠀⠀⠀⠀⠍⠑⠝⠝⠑⠎⠅⠑⠗⠀⠍⠑⠙⠀⠇⠜⠎⠑⠧⠁⠝⠎⠅⠑⠇⠊⠛⠓⠑⠙⠑⠗</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠅⠪⠃⠑⠝⠓⠁⠧⠝⠀⠼⠃⠚⠁⠋</row>
                 </page>
                 <page>
-                  <row>⠀⠀⠊⠎⠃⠝</row>
+                  <row>⠞⠊⠞⠇⠑</row>
                   <row/>
-                  <row>⠀⠀⠋⠑⠚⠇⠀⠊⠀⠏⠥⠝⠅⠞⠥⠙⠛⠁⠧⠑⠝⠀⠅⠁⠝⠀⠗⠁⠏⠤</row>
-                  <row>⠏⠕⠗⠞⠑⠗⠑⠎⠀⠏⠡⠀⠁⠥⠃⠘⠁⠝⠕⠞⠁⠄⠝⠥</row>
+                  <row>⠊⠎⠃⠝</row>
                   <row/>
-                  <row>⠀⠀⠼⠁⠄⠀⠏⠥⠝⠅⠞⠃⠊⠝⠙⠒⠀⠤</row>
+                  <row>⠋⠑⠚⠇⠀⠊⠀⠏⠥⠝⠅⠞⠥⠙⠛⠁⠧⠑⠝⠀⠅⠁⠝⠀⠗⠁⠏⠏⠕⠗⠞⠑⠗⠑⠎⠀⠏⠡⠀</row>
+                  <row>⠁⠥⠃⠘⠁⠝⠕⠞⠁⠄⠝⠥</row>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row>⠼⠁⠃⠉⠙⠑⠋</row>
+                  <row>⠼⠁⠄⠀⠏⠥⠝⠅⠞⠃⠊⠝⠙⠒⠀⠤</row>
                 </page>
+                <page/>
               </section>
               <section>
                 <page>
+                  <row/>
                   <row>⠀⠀⠀⠀⠎⠊⠍⠏⠇⠑⠀⠞⠑⠎⠞</row>
+                  <row/>
+                  <row>⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
                 </page>
               </section>
             </volume>
@@ -67,7 +106,7 @@
     </x:expect>
   </x:scenario>
   
-  <x:scenario label="footnotes-and-endnotes" pending="FIXME: expected result?">
+  <x:scenario label="footnotes-and-endnotes">
     <x:call step="nota:epub3-to-pef">
       <x:option name="epub" select="resolve-uri('../resources/notes.epub/package.opf')"/>
       <x:option name="show-braille-page-numbers" select="false()"/>
@@ -82,7 +121,119 @@
     </x:context>
     <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">
-        <pef/>
+        <pef xmlns="http://www.daisy.org/ns/2008/pef" xml:lang="da" version="2008-1">
+          <head>
+            <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
+              <dc:format>application/x-pef+xml</dc:format>
+              <dc:identifier>identifier?</dc:identifier>
+              <dc:date>2016-05-03</dc:date>
+              <dc:title>title</dc:title>
+              <dc:creator>nota</dc:creator>
+              <dc:language>da</dc:language>
+              <dc:publisher>nota</dc:publisher>
+            </meta>
+          </head>
+          <body>
+            <volume cols="40" rows="25" rowgap="0" duplex="true">
+              <section>
+                <page>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠝⠕⠞⠁</row>
+                  <row/>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠞⠊⠞⠇⠑</row>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠥⠋⠕⠗⠅⠕⠗⠞⠑⠞</row>
+                  <row/>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁⠄⠀⠃⠊⠝⠙⠀⠁⠋⠀⠼⠁</row>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠝⠕⠞⠁</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠝⠁⠞⠊⠕⠝⠁⠇⠃⠊⠃⠇⠊⠕⠞⠑⠅⠀⠋⠕⠗</row>
+                  <row>⠀⠀⠀⠀⠍⠑⠝⠝⠑⠎⠅⠑⠗⠀⠍⠑⠙⠀⠇⠜⠎⠑⠧⠁⠝⠎⠅⠑⠇⠊⠛⠓⠑⠙⠑⠗</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠅⠪⠃⠑⠝⠓⠁⠧⠝⠀⠼⠃⠚⠁⠋</row>
+                </page>
+                <page>
+                  <row>⠞⠊⠞⠇⠑</row>
+                  <row/>
+                  <row>⠊⠎⠃⠝</row>
+                  <row/>
+                  <row>⠋⠑⠚⠇⠀⠊⠀⠏⠥⠝⠅⠞⠥⠙⠛⠁⠧⠑⠝⠀⠅⠁⠝⠀⠗⠁⠏⠏⠕⠗⠞⠑⠗⠑⠎⠀⠏⠡⠀</row>
+                  <row>⠁⠥⠃⠘⠁⠝⠕⠞⠁⠄⠝⠥</row>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row>⠼⠁⠃⠉⠙⠑⠋</row>
+                  <row>⠼⠁⠄⠀⠏⠥⠝⠅⠞⠃⠊⠝⠙⠒⠀⠤</row>
+                </page>
+                <page>
+                </page>
+              </section>
+              <section>
+                <page>
+                  <row>⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠗⠑⠋⠑⠗⠑⠝⠉⠑⠀⠞⠕⠀⠁⠀⠋⠕⠕⠞⠝⠕⠞⠑⠦⠦⠝⠕⠞⠑⠀</row>
+                  <row>⠠⠔⠴⠴⠄</row>
+                  <row>⠀⠀⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠗⠑⠋⠑⠗⠑⠝⠉⠑⠀⠞⠕⠀⠁⠝⠀⠑⠝⠙⠝⠕⠞⠑⠦⠦⠝⠕⠤</row>
+                  <row>⠞⠑⠀⠼⠁⠴⠴⠄</row>
+                  <row/>
+                  <row>⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <row>⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠋⠕⠕⠞⠝⠕⠞⠑</row>
+                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</row>
+                </page>
+              </section>
+              <section>
+                <page>
+                  <row>⠞⠓⠊⠎⠀⠊⠎⠀⠁⠝⠀⠑⠝⠙⠝⠕⠞⠑</row>
+                </page>
+              </section>
+            </volume>
+          </body>
+        </pef>
       </x:document>
     </x:expect>
   </x:scenario>

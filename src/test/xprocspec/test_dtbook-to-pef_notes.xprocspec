@@ -3,43 +3,11 @@
                xmlns:nota="http://www.nota.dk"
                script="http://www.nota.dk/pipeline/modules/braille/dtbook-to-pef.xpl">
   
-  <!--
-      TODO: Steffen: please remove the CSS (so that the default style sheet is used) and update the
-      expected test result.
-  -->
-  <x:scenario label="footnotes-and-endnotes" pending="FIXME: CSS formatting changed
-                                                      verify expected result">
+  <x:scenario label="footnotes-and-endnotes">
     <x:call step="nota:dtbook-to-pef">
       <x:input port="source">
         <x:document type="inline">
           <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="da-DK">
-            <head>
-              <style type="text/css" media="embossed">
-                @page {
-                  @footnotes {
-                    content: flow(footnotes);
-                  }
-                }
-                @volume {
-                  @end {
-                    content: flow(endnotes);
-                  }
-                }
-                noteref::alternate {
-                  display: block;
-                  content: target-content(attr(idref));
-                }
-                noteref.footnote::alternate {
-                  flow: footnotes;
-                }
-                noteref.endnote::alternate {
-                  flow: endnotes;
-                }
-                note {
-                  display: none;
-                }
-              </style>
-            </head>
             <book>
               <p>
                 This is a reference to a footnote<noteref idref="foot_1">*</noteref>.
@@ -69,22 +37,24 @@
     </x:context>
     <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">
-        <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1" xml:lang="da-DK">
+        <pef xmlns="http://www.daisy.org/ns/2008/pef"
+          xml:lang="da-DK"
+          version="2008-1">
           <head>
             <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
               <dc:format>application/x-pef+xml</dc:format>
+              <dc:identifier>identifier?</dc:identifier>
+              <dc:date>2016-05-03</dc:date>
             </meta>
           </head>
           <body>
-            <volume cols="32" rows="27" rowgap="0" duplex="true">
+            <volume cols="40" rows="25" rowgap="0" duplex="true">
               <section>
                 <page>
-                  <row>⠀⠀⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠗⠑⠋⠑⠗⠑⠝⠉⠑⠀⠞⠕⠀⠁⠀⠋⠕⠕⠞⠤</row>
-                  <row>⠝⠕⠞⠑⠠⠔⠄</row>
-                  <row/>
-                  <row>⠀⠀⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠗⠑⠋⠑⠗⠑⠝⠉⠑⠀⠞⠕⠀⠁⠝⠀⠑⠝⠙⠤</row>
-                  <row>⠝⠕⠞⠑⠼⠁⠄</row>
-                  <row/>
+                  <row>⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠗⠑⠋⠑⠗⠑⠝⠉⠑⠀⠞⠕⠀⠁⠀⠋⠕⠕⠞⠝⠕⠞⠑⠦⠦⠝⠕⠞⠑⠀</row>
+                  <row>⠠⠔⠴⠴⠄</row>
+                  <row>⠀⠀⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠗⠑⠋⠑⠗⠑⠝⠉⠑⠀⠞⠕⠀⠁⠝⠀⠑⠝⠙⠝⠕⠞⠑⠦⠦⠝⠕⠤</row>
+                  <row>⠞⠑⠀⠼⠁⠴⠴⠄</row>
                   <row/>
                   <row/>
                   <row/>
@@ -103,12 +73,13 @@
                   <row/>
                   <row/>
                   <row/>
-                  <row>⠀⠀⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠋⠕⠕⠞⠝⠕⠞⠑</row>
+                  <row/>
+                  <row>⠞⠓⠊⠎⠀⠊⠎⠀⠁⠀⠋⠕⠕⠞⠝⠕⠞⠑</row>
                 </page>
               </section>
               <section>
                 <page>
-                  <row>⠀⠀⠞⠓⠊⠎⠀⠊⠎⠀⠁⠝⠀⠑⠝⠙⠝⠕⠞⠑</row>
+                  <row>⠞⠓⠊⠎⠀⠊⠎⠀⠁⠝⠀⠑⠝⠙⠝⠕⠞⠑</row>
                 </page>
               </section>
             </volume>
