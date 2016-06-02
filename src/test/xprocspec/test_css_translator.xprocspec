@@ -22,7 +22,7 @@
       <px:transform>
         <p:with-option name="query" select="concat('(input:css)(input:html)(output:css)(translator:nota)(locale:da)(grade:',$grade,')')"/>
       </px:transform>
-      <p:delete match="@style"/>
+      <p:delete match="@style|@css:*"/>
     </p:declare-step>
   </x:script>
   
@@ -43,10 +43,12 @@
     </x:context>
     <x:expect label="result" type="compare">
       <x:document type="inline">
+        <_>
         <div xmlns="http://www.w3.org/1999/xhtml" xml:lang="da">
           ⠉⠕⠝⠞⠗⠁⠉⠳⠙
           <span class="uncontracted">⠥⠝⠉⠕⠝⠞⠗⠁⠉⠞⠑⠙</span>
         </div>
+        </_>
       </x:document>
     </x:expect>
   </x:scenario>
