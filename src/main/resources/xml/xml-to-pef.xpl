@@ -27,6 +27,7 @@
 		</p:documentation>
 	</p:option>
 	
+	<p:option name="ascii-file-format" select="'(table:&quot;com_braillo.BrailloTableProvider.TableType.BRAILLO_6DOT_001_00&quot;)'"/>
 	<p:option name="ascii-table" select="'(id:&quot;com_braillo.BrailloTableProvider.TableType.BRAILLO_6DOT_001_00&quot;)'"/>
 	<p:option name="include-preview" select="'false'"/>
 	<p:option name="include-brf" select="'false'"/>
@@ -56,9 +57,6 @@
 	<p:option name="show-print-page-numbers"/>
 	<p:option name="force-braille-page-break"/>
 	<p:option name="toc-depth"/>
-	<p:option name="ignore-document-title"/>
-	<p:option name="include-symbols-list"/>
-	<p:option name="choice-of-colophon"/>
 	<p:option name="footnotes-placement"/>
 	<p:option name="colophon-metadata-placement"/>
 	<p:option name="rear-cover-placement"/>

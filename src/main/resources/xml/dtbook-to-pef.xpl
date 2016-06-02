@@ -25,6 +25,7 @@
     <p:option name="stylesheet"/>
     <p:option name="contraction-grade"/>
     <p:option name="ascii-table"/>
+    <p:option name="ascii-file-format"/>
     <p:option name="include-brf"/>
     <p:option name="include-preview"/>
     <p:option name="include-obfl"/>
@@ -52,9 +53,6 @@
     <p:option name="show-print-page-numbers"/>
     <p:option name="force-braille-page-break"/>
     <p:option name="toc-depth"/>
-    <p:option name="ignore-document-title"/>
-    <p:option name="include-symbols-list"/>
-    <p:option name="choice-of-colophon"/>
     <p:option name="footnotes-placement"/>
     <p:option name="colophon-metadata-placement"/>
     <p:option name="rear-cover-placement"/>
@@ -63,24 +61,25 @@
     <p:option name="minimum-number-of-sheets"/>
     
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/library.xpl"/>
-    <p:import href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl"/>
+    <p:import href="http://www.daisy.org/pipeline/modules/braille/xml-to-pef/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/file-utils/library.xpl"/>
     
     <p:in-scope-names name="in-scope-names"/>
-    <p:identity>
+    <px:merge-parameters>
         <p:input port="source">
             <p:pipe port="result" step="in-scope-names"/>
         </p:input>
-    </p:identity>
-    <p:delete match="c:param[@name=('stylesheet',
-                                    'ascii-table',
-                                    'include-brf',
-                                    'include-preview',
-                                    'include-obfl',
-                                    'pef-output-dir',
-                                    'brf-output-dir',
-                                    'preview-output-dir',
-                                    'temp-dir')]"/>
+    </px:merge-parameters>
+    <px:delete-parameters parameter-names="stylesheet
+                                           ascii-table
+                                           ascii-file-format
+                                           include-brf
+                                           include-preview
+                                           include-obfl
+                                           pef-output-dir
+                                           brf-output-dir
+                                           preview-output-dir
+                                           temp-dir"/>
     <p:identity name="input-options"/>
     <p:sink/>
     
@@ -118,7 +117,7 @@
     <!-- ===== -->
     <!-- STORE -->
     <!-- ===== -->
-    <px:dtbook-to-pef.store>
+    <px:xml-to-pef.store>
         <p:input port="obfl">
             <p:pipe step="convert" port="obfl"/>
         </p:input>
@@ -129,10 +128,11 @@
         <p:with-option name="include-preview" select="$include-preview"/>
         <p:with-option name="include-obfl" select="$include-obfl"/>
         <p:with-option name="ascii-table" select="$ascii-table"/>
+        <p:with-option name="ascii-file-format" select="$ascii-file-format"/>
         <p:with-option name="pef-output-dir" select="$pef-output-dir"/>
         <p:with-option name="brf-output-dir" select="$brf-output-dir"/>
         <p:with-option name="preview-output-dir" select="$preview-output-dir"/>
-    </px:dtbook-to-pef.store>
+    </px:xml-to-pef.store>
     
 </p:declare-step>
 

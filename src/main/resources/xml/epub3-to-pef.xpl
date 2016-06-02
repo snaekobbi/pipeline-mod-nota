@@ -58,9 +58,6 @@
     <p:option name="show-print-page-numbers"/>
     <p:option name="force-braille-page-break"/>
     <p:option name="toc-depth"/>
-    <p:option name="ignore-document-title"/>
-    <p:option name="include-symbols-list"/>
-    <p:option name="choice-of-colophon"/>
     <p:option name="footnotes-placement"/>
     <p:option name="colophon-metadata-placement"/>
     <p:option name="rear-cover-placement"/>
@@ -73,24 +70,24 @@
     <!-- ======= -->
     <p:import href="http://www.daisy.org/pipeline/modules/braille/epub3-to-pef/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/common-utils/library.xpl"/>
-    <p:import href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl"/>
+    <p:import href="http://www.daisy.org/pipeline/modules/braille/xml-to-pef/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/file-utils/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/fileset-utils/library.xpl"/>
     
     <p:in-scope-names name="in-scope-names"/>
-    <p:identity>
+    <px:merge-parameters>
         <p:input port="source">
             <p:pipe port="result" step="in-scope-names"/>
         </p:input>
-    </p:identity>
-    <p:delete match="c:param[@name=('stylesheet',
-                                    'ascii-table',
-                                    'include-brf',
-                                    'include-preview',
-                                    'pef-output-dir',
-                                    'brf-output-dir',
-                                    'preview-output-dir',
-                                    'temp-dir')]"/>
+    </px:merge-parameters>
+    <px:delete-parameters parameter-names="stylesheet
+                                           ascii-table
+                                           include-brf
+                                           include-preview
+                                           pef-output-dir
+                                           brf-output-dir
+                                           preview-output-dir
+                                           temp-dir"/>
     <p:identity name="input-options"/>
     <p:sink/>
     
@@ -167,22 +164,20 @@
     </p:identity>
     <px:message message="Storing PEF"/>
     <p:delete match="/*/@xml:base"/>
-    <p:group>
-        <p:variable name="name" select="if (ends-with(lower-case($epub),'.epub')) then replace($epub,'^.*/([^/]*)\.[^/\.]*$','$1')
+    <px:xml-to-pef.store>
+        <p:input port="obfl">
+            <p:pipe step="convert" port="obfl"/>
+        </p:input>
+        <p:with-option name="name" select="if (ends-with(lower-case($epub),'.epub')) then replace($epub,'^.*/([^/]*)\.[^/\.]*$','$1')
                                            else (/opf:package/opf:metadata/dc:identifier[not(@refines)], 'unknown-identifier')[1]">
             <p:pipe step="opf" port="result"/>
-        </p:variable>
-        <pef:store>
-            <p:with-option name="href" select="concat($pef-output-dir,'/',$name,'.pef')"/>
-            <p:with-option name="preview-href" select="if ($include-preview='true' and $preview-output-dir!='')
-                                                       then concat($preview-output-dir,'/',$name,'.pef.html')
-                                                       else ''"/>
-            <p:with-option name="brf-href" select="if ($include-brf='true' and $brf-output-dir!='')
-                                                   then concat($brf-output-dir,'/',$name,'.brf')
-                                                   else ''"/>
-            <p:with-option name="brf-table" select="if ($ascii-table!='') then $ascii-table
-                                                    else concat('(locale:',(/*/@xml:lang,'und')[1],')')"/>
-        </pef:store>
-    </p:group>
+        </p:with-option>
+        <p:with-option name="include-brf" select="$include-brf"/>
+        <p:with-option name="include-preview" select="$include-preview"/>
+        <p:with-option name="ascii-table" select="$ascii-table"/>
+        <p:with-option name="pef-output-dir" select="$pef-output-dir"/>
+        <p:with-option name="brf-output-dir" select="$brf-output-dir"/>
+        <p:with-option name="preview-output-dir" select="$preview-output-dir"/>
+    </px:xml-to-pef.store>
     
 </p:declare-step>
