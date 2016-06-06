@@ -146,7 +146,8 @@
         <configuration>
           <instructions>
             <_dsannotations>
-              nu.nota.pipeline.braille.impl.NotaTranslator$Provider
+              nu.nota.pipeline.braille.impl.NotaTranslator$Provider,
+              nu.nota.pipeline.braille.impl.TablePath
             </_dsannotations>
           </instructions>
         </configuration>

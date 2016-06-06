@@ -73,8 +73,9 @@ public interface NotaTranslator {
 			href = asURI(context.getBundleContext().getBundle().getEntry("xml/block-translate.xpl"));
 		}
 		
-		private final static Query uncontractedTable = mutableQuery().add("liblouis-table", "http://www.liblouis.org/tables/da-dk-g16.utb");
-		private final static Query contractedTable = mutableQuery().add("liblouis-table", "http://www.liblouis.org/tables/da-dk-g26.ctb");
+		private final static Query grade0Table = mutableQuery().add("liblouis-table", "http://www.liblouis.org/tables/da-dk-g16.utb");
+		private final static Query grade1Table = mutableQuery().add("liblouis-table", "http://www.nota.nu/liblouis/da-dk-g26l.ctb");
+		private final static Query grade2Table = mutableQuery().add("liblouis-table", "http://www.liblouis.org/tables/da-dk-g26.ctb");
 		private final static Query hyphenTable = mutableQuery().add("libhyphen-table",
 		                                                            "http://www.libreoffice.org/dictionaries/hyphen/hyph_da_DK.dic");
 		
@@ -88,7 +89,7 @@ public interface NotaTranslator {
 		 *
 		 * - translator: Will only match if the value is `nota'.
 		 * - locale: Will only match if the language subtag is 'da'.
-		 * - grade: `0' or `2'.
+		 * - grade: `0', `1' or `2'.
 		 *
 		 */
 		protected final Iterable<BrailleTranslator> _get(Query query) {
@@ -109,13 +110,15 @@ public interface NotaTranslator {
 						final int grade;
 						if (v.equals("0"))
 							grade = 0;
+						else if (v.equals("1"))
+							grade = 1;
 						else if (v.equals("2"))
 							grade = 2;
 						else
 							return empty;
 						if (q.isEmpty()) {
 							Iterable<LibhyphenHyphenator> hyphenators = logSelect(hyphenTable, libhyphenHyphenatorProvider);
-							final Query liblouisTable = grade == 0 ? uncontractedTable : contractedTable;
+							final Query liblouisTable = grade == 0 ? grade0Table : grade == 1 ? grade1Table : grade2Table;
 							return concat(
 								transform(
 									hyphenators,
@@ -128,7 +131,7 @@ public interface NotaTranslator {
 													new Function<LiblouisTranslator,Iterable<BrailleTranslator>>() {
 														public Iterable<BrailleTranslator> _apply(final LiblouisTranslator translator) {
 															return transform(
-																logSelect(mutableQuery(uncontractedTable).add("hyphenator", h.getIdentifier()),
+																logSelect(mutableQuery(grade0Table).add("hyphenator", h.getIdentifier()),
 																          liblouisTranslatorProvider),
 																new Function<LiblouisTranslator,BrailleTranslator>() {
 																	public BrailleTranslator _apply(LiblouisTranslator uncontractedTranslator) {

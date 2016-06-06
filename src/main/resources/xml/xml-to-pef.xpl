@@ -12,7 +12,7 @@
 				<choice>
 					<documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0" xml:lang="da">
 						<value>uforkortet</value>
-						<value>lille forkortelse (not supported yet)</value>
+						<value>lille forkortelse</value>
 						<value>stor forkortelse</value>
 					</documentation>
 					<value>0</value>
